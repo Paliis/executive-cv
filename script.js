@@ -151,6 +151,9 @@
     const nav = document.querySelector(".nav");
     if (nav) nav.setAttribute("aria-label", t("navLabel"));
 
+    const langSwitch = document.getElementById("langSwitch");
+    if (langSwitch) langSwitch.setAttribute("aria-label", t("langSwitchLabel"));
+
     const name = meta.name[lang];
     document.getElementById("navName").textContent = name;
     document.getElementById("footerName").textContent = name;

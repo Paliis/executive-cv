@@ -1,0 +1,8 @@
+{
+  "name": "parshentsev-cv",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/validate.mjs",
+    "test:smoke": "node scripts/smoke.mjs"
+  }
+}

@@ -2,6 +2,13 @@
 
 Контент **лише з Google Doc** (експорт у `cv-google.txt` для перевірки).
 
+## Перевірки
+
+```bash
+npm test          # контент, i18n, HTML, SEO
+npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
+```
+
 ## Запуск
 
 Локально: відкрийте `index.html` у браузері.
