@@ -6,14 +6,14 @@
 
 ```bash
 npm test          # контент, i18n, HTML, SEO
-npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
+npm run test:smoke  # продакшен (executive-cv.vercel.app)
 ```
 
 ## Запуск
 
 Локально: відкрийте `index.html` у браузері.
 
-**Продакшен (Vercel):** https://parshentsev-cv.vercel.app — одне посилання для всіх (сайт, Telegram, LinkedIn, email). `noindex` для Google + `robots.txt`.
+**Продакшен (Vercel):** https://executive-cv.vercel.app — одне посилання для всіх (сайт, Telegram, LinkedIn, email). `noindex` для Google + `robots.txt`.
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 

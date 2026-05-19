@@ -4,8 +4,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "executive-cv.vercel.app" }],
-      "destination": "https://parshentsev-cv.vercel.app/$1",
+      "has": [{ "type": "host", "value": "parshentsev-cv.vercel.app" }],
+      "destination": "https://executive-cv.vercel.app/$1",
       "permanent": true
     }
   ]
