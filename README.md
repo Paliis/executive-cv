@@ -13,9 +13,9 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 
 Локально: відкрийте `index.html` у браузері.
 
-**Продакшен (Vercel):** https://parshentsev-cv.vercel.app — одне посилання для всіх (сайт, Telegram, LinkedIn, email). `noindex` для Google + `robots.txt`.
+**Посилання для всіх (Telegram, email, LinkedIn):** https://parshentsev-cv.vercel.app/?v=2
 
-Якщо `parshentsev-cv.vercel.app` відкриває `/cv` — у Vercel → проєкт з GitHub → **Settings → Domains** додайте `parshentsev-cv.vercel.app` і приберіть його зі старого проєкту.
+Корінь `/` автоматично перенаправляє на `/?v=2` (Telegram кешує кожну URL окремо; `v=2` — стабільна адреса з прев’ю).
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 

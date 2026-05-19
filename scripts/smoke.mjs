@@ -5,6 +5,7 @@
 const base = (process.argv[2] || "https://parshentsev-cv.vercel.app").replace(/\/$/, "");
 const paths = [
   "/",
+  "/?v=2",
   "/robots.txt",
   "/favicon.svg",
   "/site.webmanifest",
@@ -19,13 +20,12 @@ const paths = [
 ];
 const errors = [];
 
-// Root must not redirect (Telegram caches the first URL it sees)
+// Root should redirect to /?v=2 (Telegram preview URL)
 {
   const res = await fetch(`${base}/`, { redirect: "manual" });
-  if (res.status >= 300 && res.status < 400) {
-    errors.push(`/: redirects to ${res.headers.get("location")} (use single canonical URL)`);
-  } else if (!res.ok) {
-    errors.push(`/: HTTP ${res.status}`);
+  const loc = res.headers.get("location") || "";
+  if (res.status < 300 || res.status >= 400 || !loc.includes("v=2")) {
+    errors.push(`/: should redirect to /?v=2 (got ${res.status} ${loc})`);
   }
 }
 
@@ -33,7 +33,12 @@ for (const p of paths) {
   const url = `${base}${p}`;
   const res = await fetch(url, { redirect: "follow" });
   if (!res.ok) errors.push(`${p}: HTTP ${res.status}`);
-  else if (p === "/") {
+  else if (p === "/?v=2") {
+    const html = await res.text();
+    if (!html.includes('property="og:image"')) errors.push("/?v=2: missing og:image");
+    if (!html.includes("?v=2")) errors.push("/?v=2: og:url should reference ?v=2");
+    if (html.includes("heroName")) errors.push("/?v=2: should be OG-only landing");
+  } else if (p === "/") {
     const html = await res.text();
     if (html.includes("heroName")) errors.push("/: should be OG-only landing (use /site for full CV)");
     if (html.includes('name="robots"') && html.includes("noindex")) {
