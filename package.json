@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "test": "node scripts/validate.mjs",
-    "test:smoke": "node scripts/smoke.mjs"
+    "test:smoke": "node scripts/smoke.mjs",
+    "generate:og": "python scripts/generate-og-image.py"
   }
 }

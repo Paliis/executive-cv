@@ -9,6 +9,7 @@ const paths = [
   "/favicon.svg",
   "/site.webmanifest",
   "/cv.pdf",
+  "/og-image.jpg",
   "/photo.png",
   "/styles.css",
   "/script.js",

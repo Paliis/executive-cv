@@ -72,6 +72,7 @@ for (const file of [
   "styles.css",
   "script.js",
   "content.js",
+  "og-image.jpg",
   "photo.png",
   "cv.pdf",
   "robots.txt",
