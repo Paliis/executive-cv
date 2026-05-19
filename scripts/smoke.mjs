@@ -17,6 +17,16 @@ const paths = [
 ];
 const errors = [];
 
+// Root must not redirect (Telegram caches the first URL it sees)
+{
+  const res = await fetch(`${base}/`, { redirect: "manual" });
+  if (res.status >= 300 && res.status < 400) {
+    errors.push(`/: redirects to ${res.headers.get("location")} (use single canonical URL)`);
+  } else if (!res.ok) {
+    errors.push(`/: HTTP ${res.status}`);
+  }
+}
+
 for (const p of paths) {
   const url = `${base}${p}`;
   const res = await fetch(url, { redirect: "follow" });

@@ -3,11 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/cv",
-      "destination": "/?share=cv",
-      "permanent": false
-    },
-    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "executive-cv.vercel.app" }],
       "destination": "https://parshentsev-cv.vercel.app/$1",
