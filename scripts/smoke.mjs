@@ -3,7 +3,17 @@
  * Run: node scripts/smoke.mjs [baseUrl]
  */
 const base = (process.argv[2] || "https://parshentsev-cv.vercel.app").replace(/\/$/, "");
-const paths = ["/", "/robots.txt", "/cv.pdf", "/photo.png", "/styles.css", "/script.js", "/content.js"];
+const paths = [
+  "/",
+  "/robots.txt",
+  "/favicon.svg",
+  "/site.webmanifest",
+  "/cv.pdf",
+  "/photo.png",
+  "/styles.css",
+  "/script.js",
+  "/content.js",
+];
 const errors = [];
 
 for (const p of paths) {
@@ -14,6 +24,8 @@ for (const p of paths) {
     const html = await res.text();
     if (!html.includes("heroName")) errors.push("/: missing hero markup");
     if (!html.includes("noindex")) errors.push("/: missing noindex meta");
+    if (!html.includes('property="og:image"')) errors.push("/: missing og:image meta");
+    if (!html.includes('rel="icon"')) errors.push("/: missing favicon");
   }
   if (p === "/robots.txt") {
     const text = await res.text();

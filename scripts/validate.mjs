@@ -67,7 +67,18 @@ const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const content = loadContent();
 
 // Required assets
-for (const file of ["index.html", "styles.css", "script.js", "content.js", "photo.png", "cv.pdf", "robots.txt", "vercel.json"]) {
+for (const file of [
+  "index.html",
+  "styles.css",
+  "script.js",
+  "content.js",
+  "photo.png",
+  "cv.pdf",
+  "robots.txt",
+  "vercel.json",
+  "favicon.svg",
+  "site.webmanifest",
+]) {
   if (!fs.existsSync(path.join(root, file))) fail(`Missing file: ${file}`);
 }
 
@@ -75,6 +86,9 @@ for (const file of ["index.html", "styles.css", "script.js", "content.js", "phot
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 if (!/Disallow:\s*\//.test(robots)) fail("robots.txt should Disallow: /");
 if (!html.includes('name="robots"') || !html.includes("noindex")) fail("index.html missing noindex meta");
+if (!html.includes('property="og:image"')) fail("index.html missing og:image meta");
+if (!html.includes('rel="icon"')) fail("index.html missing favicon link");
+if (!content.meta?.siteUrl?.startsWith("https://")) fail("content.meta.siteUrl must be absolute https URL");
 
 const vercel = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"));
 const xRobots = vercel.headers?.some((h) =>

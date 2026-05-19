@@ -133,14 +133,38 @@
       .join("");
   }
 
+  function setMetaContent(selector, value) {
+    const el = document.querySelector(selector);
+    if (el && value) el.setAttribute("content", value);
+  }
+
+  function updateShareMeta(lang) {
+    const title = t("pageTitle");
+    const description = t("pageDescription");
+    const imageAlt = meta.photoAlt?.[lang] || meta.photoAlt?.en || "";
+    const pageUrl = `${meta.siteUrl}/`;
+    const imageUrl = meta.siteUrl + (meta.shareImage || "/photo.png");
+
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[property="og:url"]', pageUrl);
+    setMetaContent('meta[property="og:image"]', imageUrl);
+    setMetaContent('meta[property="og:image:alt"]', imageAlt);
+    setMetaContent('meta[property="og:locale"]', lang === "uk" ? "uk_UA" : "en_US");
+    setMetaContent('meta[name="twitter:title"]', title);
+    setMetaContent('meta[name="twitter:description"]', description);
+    setMetaContent('meta[name="twitter:image"]', imageUrl);
+    setMetaContent('meta[name="twitter:image:alt"]', imageAlt);
+  }
+
   function applyLanguage(lang) {
     currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang === "uk" ? "uk" : "en";
 
     document.title = t("pageTitle");
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.content = t("pageDescription");
+    updateShareMeta(lang);
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
