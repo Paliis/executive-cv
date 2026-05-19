@@ -2,9 +2,8 @@
  * Smoke test production deployment.
  * Run: node scripts/smoke.mjs [baseUrl]
  */
-const base = (process.argv[2] || "https://parshentsev-cv.vercel.app/cv").replace(/\/$/, "");
+const base = (process.argv[2] || "https://parshentsev-cv.vercel.app").replace(/\/$/, "");
 const paths = [
-  "/cv",
   "/",
   "/robots.txt",
   "/favicon.svg",
@@ -22,7 +21,7 @@ for (const p of paths) {
   const url = `${base}${p}`;
   const res = await fetch(url, { redirect: "follow" });
   if (!res.ok) errors.push(`${p}: HTTP ${res.status}`);
-  else if (p === "/cv") {
+  else if (p === "/") {
     const html = await res.text();
     if (!html.includes("heroName")) errors.push("/: missing hero markup");
     if (html.includes('name="robots"') && html.includes("noindex")) {

@@ -3,8 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/",
-      "destination": "/cv",
+      "source": "/cv",
+      "destination": "/?share=cv",
       "permanent": false
     },
     {
