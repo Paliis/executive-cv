@@ -2,7 +2,7 @@
  * Smoke test production deployment.
  * Run: node scripts/smoke.mjs [baseUrl]
  */
-const base = (process.argv[2] || "https://executive-cv.vercel.app").replace(/\/$/, "");
+const base = (process.argv[2] || "https://parshentsev-cv.vercel.app").replace(/\/$/, "");
 const paths = [
   "/",
   "/robots.txt",
