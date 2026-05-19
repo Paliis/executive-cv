@@ -69,7 +69,7 @@ const content = loadContent();
 // Required assets
 for (const file of [
   "index.html",
-  "cv/index.html",
+  "cv.html",
   "styles.css",
   "script.js",
   "content.js",
