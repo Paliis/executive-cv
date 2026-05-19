@@ -8,8 +8,5 @@
       "destination": "https://parshentsev-cv.vercel.app/$1",
       "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/cv", "destination": "/index.html" }
   ]
 }
