@@ -14,7 +14,7 @@ window.CV_CONTENT = {
       en: "Denis Parshentsev — professional portrait",
     },
     siteUrl: "https://parshentsev-cv.vercel.app",
-    sharePath: "/",
+    sharePath: "",
     shareImage: "/og-image.jpg",
   },
 

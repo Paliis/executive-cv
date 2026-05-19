@@ -91,6 +91,9 @@ if (!/User-agent:\s*Googlebot[\s\S]*Disallow:\s*\//.test(robots)) {
 if (!/User-agent:\s*TelegramBot[\s\S]*Allow:\s*\//.test(robots)) {
   fail("robots.txt should Allow / for TelegramBot (link previews)");
 }
+if (/User-agent:\s*\*[\s\S]*Disallow:\s*\/\s*$/m.test(robots)) {
+  fail("robots.txt: User-agent * Disallow / blocks Telegram when UA is not TelegramBot");
+}
 if (html.includes('name="robots"') && html.includes("noindex")) {
   fail("index.html: global robots noindex blocks Telegram previews; use googlebot/bingbot only");
 }

@@ -1,15 +1,8 @@
-# Search engines — do not crawl
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
-
-User-agent: Yandex
-Disallow: /
-
-# Messengers — allow link previews (Open Graph)
+# Messengers — link previews (must be before blanket rules)
 User-agent: TelegramBot
+Allow: /
+
+User-agent: Telegram
 Allow: /
 
 User-agent: Twitterbot
@@ -27,6 +20,19 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# Everyone else
-User-agent: *
+# Search engines — do not crawl
+User-agent: Googlebot
 Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+# Other bots may fetch pages (needed for some Telegram preview fetches)
+User-agent: *
+Allow: /
