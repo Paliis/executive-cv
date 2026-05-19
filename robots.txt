@@ -1,0 +1,3 @@
+# Private executive CV — do not crawl or index
+User-agent: *
+Disallow: /

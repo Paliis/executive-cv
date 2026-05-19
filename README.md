@@ -6,7 +6,7 @@
 
 Локально: відкрийте `index.html` у браузері.
 
-**Продакшен (Vercel):** https://executive-cv.vercel.app
+**Продакшен (Vercel):** https://executive-cv.vercel.app — лише для прямого посилання; `noindex` + `robots.txt` (не для пошуку).
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 
