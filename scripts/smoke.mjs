@@ -10,6 +10,7 @@ const paths = [
   "/site.webmanifest",
   "/cv.pdf",
   "/og-image.jpg",
+  "/share.jpg",
   "/photo.png",
   "/styles.css",
   "/script.js",
@@ -47,6 +48,17 @@ for (const p of paths) {
   const xRobots = res.headers.get("x-robots-tag");
   if (xRobots && xRobots.includes("noindex")) {
     errors.push(`${p}: X-Robots-Tag noindex blocks Telegram (${xRobots})`);
+  }
+}
+
+{
+  const res = await fetch(`${base}/`, {
+    redirect: "follow",
+    headers: { "User-Agent": "TelegramBot (like TwitterBot)" },
+  });
+  const html = await res.text();
+  if (!html.includes("share.jpg")) {
+    errors.push("/: TelegramBot response should reference share.jpg (telegram.html rewrite)");
   }
 }
 

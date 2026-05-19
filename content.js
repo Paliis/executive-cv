@@ -15,7 +15,7 @@ window.CV_CONTENT = {
     },
     siteUrl: "https://parshentsev-cv.vercel.app",
     sharePath: "",
-    shareImage: "/og-image.jpg",
+    shareImage: "/share.jpg",
   },
 
   uk: {

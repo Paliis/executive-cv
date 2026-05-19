@@ -73,6 +73,8 @@ for (const file of [
   "script.js",
   "content.js",
   "og-image.jpg",
+  "share.jpg",
+  "telegram.html",
   "photo.png",
   "cv.pdf",
   "robots.txt",

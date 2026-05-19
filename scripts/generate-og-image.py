@@ -59,8 +59,11 @@ def main():
     draw.text((x, 248), "LOKO · VARUS · ALLO", fill=ACCENT, font=font_sub)
     draw.text((x, 300), "Dnipro, Ukraine", fill=MUTED, font=font_sub)
 
-    canvas.save(OUT, "JPEG", quality=88, optimize=True)
+    canvas.save(OUT, "JPEG", quality=88, optimize=True, progressive=False)
+    share = ROOT / "share.jpg"
+    canvas.save(share, "JPEG", quality=90, optimize=True, progressive=False)
     print(f"Wrote {OUT} ({OUT.stat().st_size // 1024} KB)")
+    print(f"Wrote {share} ({share.stat().st_size // 1024} KB)")
 
 
 if __name__ == "__main__":
