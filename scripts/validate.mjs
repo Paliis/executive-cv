@@ -86,7 +86,9 @@ for (const file of [
 // robots + meta noindex
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 if (!/Disallow:\s*\//.test(robots)) fail("robots.txt should Disallow: /");
-if (!html.includes('name="robots"') || !html.includes("noindex")) fail("index.html missing noindex meta");
+if (html.includes('name="robots"') && html.includes("noindex")) {
+  fail("index.html: global robots noindex blocks Telegram previews; use googlebot/bingbot only");
+}
 if (!html.includes('property="og:image"')) fail("index.html missing og:image meta");
 if (!html.includes('rel="icon"')) fail("index.html missing favicon link");
 if (!content.meta?.siteUrl?.startsWith("https://")) fail("content.meta.siteUrl must be absolute https URL");
@@ -95,7 +97,7 @@ const vercel = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"
 const xRobots = vercel.headers?.some((h) =>
   h.headers?.some((x) => x.key === "X-Robots-Tag" && x.value.includes("noindex"))
 );
-if (!xRobots) fail("vercel.json missing X-Robots-Tag noindex header");
+if (xRobots) fail("vercel.json X-Robots-Tag noindex blocks Telegram link previews");
 
 // i18n parity
 const ukKeys = langBlockKeys(content.uk);
@@ -168,5 +170,5 @@ console.log(`✓ All ${i18nInHtml.length} i18n keys OK`);
 console.log(`✓ ${sectionIds.length} sections, nav anchors OK`);
 console.log(`✓ ${idsInScript.length} DOM ids OK`);
 console.log(`✓ Content arrays uk/en parity OK`);
-console.log("✓ SEO block (robots.txt, noindex) OK");
+console.log("✓ SEO block (robots.txt, search-bot noindex) OK");
 console.log("\nAll checks passed.\n");

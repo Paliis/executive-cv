@@ -8,16 +8,5 @@
       "destination": "https://parshentsev-cv.vercel.app/$1",
       "permanent": true
     }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive, nosnippet"
-        }
-      ]
-    }
   ]
 }

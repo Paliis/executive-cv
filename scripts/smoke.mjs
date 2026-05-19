@@ -24,7 +24,9 @@ for (const p of paths) {
   else if (p === "/") {
     const html = await res.text();
     if (!html.includes("heroName")) errors.push("/: missing hero markup");
-    if (!html.includes("noindex")) errors.push("/: missing noindex meta");
+    if (html.includes('name="robots"') && html.includes("noindex")) {
+      errors.push("/: global robots noindex should not be set (Telegram previews)");
+    }
     if (!html.includes('property="og:image"')) errors.push("/: missing og:image meta");
     if (!html.includes('rel="icon"')) errors.push("/: missing favicon");
   }
@@ -33,8 +35,8 @@ for (const p of paths) {
     if (!text.includes("Disallow: /")) errors.push("robots.txt: missing Disallow");
   }
   const xRobots = res.headers.get("x-robots-tag");
-  if (p === "/" && xRobots && !xRobots.includes("noindex")) {
-    errors.push(`/: X-Robots-Tag should include noindex, got "${xRobots}"`);
+  if (xRobots && xRobots.includes("noindex")) {
+    errors.push(`${p}: X-Robots-Tag noindex blocks Telegram (${xRobots})`);
   }
 }
 
