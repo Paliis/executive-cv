@@ -69,12 +69,12 @@ const content = loadContent();
 // Required assets
 for (const file of [
   "index.html",
+  "site.html",
   "styles.css",
   "script.js",
   "content.js",
   "og-image.jpg",
   "share.jpg",
-  "telegram.html",
   "photo.png",
   "cv.pdf",
   "robots.txt",
@@ -100,7 +100,9 @@ if (html.includes('name="robots"') && html.includes("noindex")) {
   fail("index.html: global robots noindex blocks Telegram previews; use googlebot/bingbot only");
 }
 if (!html.includes('property="og:image"')) fail("index.html missing og:image meta");
-if (!html.includes('rel="icon"')) fail("index.html missing favicon link");
+if (html.includes("heroName")) fail("index.html must be OG-only (full site is site.html)");
+const siteHtml = fs.readFileSync(path.join(root, "site.html"), "utf8");
+if (!siteHtml.includes('id="heroName"')) fail("site.html missing hero markup");
 if (!content.meta?.siteUrl?.startsWith("https://")) fail("content.meta.siteUrl must be absolute https URL");
 
 const vercel = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"));
@@ -144,7 +146,7 @@ for (const href of navHrefs) {
 const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
 const idsInScript = [...script.matchAll(/getElementById\("([^"]+)"\)/g)].map((m) => m[1]);
 for (const id of idsInScript) {
-  if (!html.includes(`id="${id}"`)) fail(`script.js expects #${id} but index.html has no such id`);
+  if (!siteHtml.includes(`id="${id}"`)) fail(`script.js expects #${id} but site.html has no such id`);
 }
 
 // Data arrays

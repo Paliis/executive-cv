@@ -9,41 +9,9 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": "TelegramBot (like TwitterBot)"
-        }
-      ],
-      "destination": "/telegram.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "header", "key": "user-agent", "value": "Telegram" }],
-      "destination": "/telegram.html"
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "header", "key": "user-agent", "value": "facebookexternalhit" }],
-      "destination": "/telegram.html"
-    }
-  ],
   "headers": [
     {
       "source": "/",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/telegram.html",
       "headers": [
         {
           "key": "Cache-Control",

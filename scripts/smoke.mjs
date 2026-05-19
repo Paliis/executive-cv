@@ -15,6 +15,7 @@ const paths = [
   "/styles.css",
   "/script.js",
   "/content.js",
+  "/site",
 ];
 const errors = [];
 
@@ -34,12 +35,16 @@ for (const p of paths) {
   if (!res.ok) errors.push(`${p}: HTTP ${res.status}`);
   else if (p === "/") {
     const html = await res.text();
-    if (!html.includes("heroName")) errors.push("/: missing hero markup");
+    if (html.includes("heroName")) errors.push("/: should be OG-only landing (use /site for full CV)");
     if (html.includes('name="robots"') && html.includes("noindex")) {
       errors.push("/: global robots noindex should not be set (Telegram previews)");
     }
     if (!html.includes('property="og:image"')) errors.push("/: missing og:image meta");
-    if (!html.includes('rel="icon"')) errors.push("/: missing favicon");
+    if (html.length > 4000) errors.push("/: page too large for Telegram crawler");
+  }
+  if (p === "/site") {
+    const html = await res.text();
+    if (!html.includes("heroName")) errors.push("/site: missing hero markup");
   }
   if (p === "/robots.txt") {
     const text = await res.text();
@@ -48,17 +53,6 @@ for (const p of paths) {
   const xRobots = res.headers.get("x-robots-tag");
   if (xRobots && xRobots.includes("noindex")) {
     errors.push(`${p}: X-Robots-Tag noindex blocks Telegram (${xRobots})`);
-  }
-}
-
-{
-  const res = await fetch(`${base}/`, {
-    redirect: "follow",
-    headers: { "User-Agent": "TelegramBot (like TwitterBot)" },
-  });
-  const html = await res.text();
-  if (!html.includes("share.jpg")) {
-    errors.push("/: TelegramBot response should reference share.jpg (telegram.html rewrite)");
   }
 }
 
