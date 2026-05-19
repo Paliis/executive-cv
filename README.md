@@ -13,7 +13,7 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 
 Локально: відкрийте `index.html` у браузері.
 
-**Продакшен (Vercel):** https://parshentsev-cv.vercel.app — лише для прямого посилання; `noindex` + `robots.txt` (не для пошуку).
+**Продакшен (Vercel):** https://parshentsev-cv.vercel.app/cv — для поширення в месенджерах (прев’ю з картинкою). Корінь `/` теж відкриває сайт; `noindex` + `robots.txt` (не для пошуку).
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 

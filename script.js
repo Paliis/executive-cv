@@ -142,7 +142,7 @@
     const title = t("pageTitle");
     const description = t("pageDescription");
     const imageAlt = meta.photoAlt?.[lang] || meta.photoAlt?.en || "";
-    const pageUrl = `${meta.siteUrl}/`;
+    const pageUrl = meta.siteUrl + (meta.sharePath || "/");
     const imageUrl = meta.siteUrl + (meta.shareImage || "/photo.png");
 
     setMetaContent('meta[name="description"]', description);
