@@ -352,14 +352,18 @@ main {
   padding: 1.75rem 1.5rem;
 }
 
-.hero__profile > p:not(.text-muted) {
+.hero__profile > p:not(.hero__profile-highlight) {
   font-size: 1rem;
   line-height: 1.75;
   color: #d4d4d8;
 }
 
-.hero__profile p + p {
+.hero__profile-highlight {
   margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--accent-hover);
 }
 
 .hero__kicker {
@@ -1156,7 +1160,11 @@ main {
     padding: 2rem 2.25rem;
   }
 
-  .hero__profile > p:not(.text-muted) {
+  .hero__profile > p:not(.hero__profile-highlight) {
+    font-size: 1.0625rem;
+  }
+
+  .hero__profile-highlight {
     font-size: 1.0625rem;
   }
 
