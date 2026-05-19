@@ -85,7 +85,12 @@ for (const file of [
 
 // robots + meta noindex
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
-if (!/Disallow:\s*\//.test(robots)) fail("robots.txt should Disallow: /");
+if (!/User-agent:\s*Googlebot[\s\S]*Disallow:\s*\//.test(robots)) {
+  fail("robots.txt should Disallow / for Googlebot");
+}
+if (!/User-agent:\s*TelegramBot[\s\S]*Allow:\s*\//.test(robots)) {
+  fail("robots.txt should Allow / for TelegramBot (link previews)");
+}
 if (html.includes('name="robots"') && html.includes("noindex")) {
   fail("index.html: global robots noindex blocks Telegram previews; use googlebot/bingbot only");
 }
