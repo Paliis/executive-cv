@@ -55,7 +55,7 @@ window.CV_CONTENT = {
     contactTitle: "Контакти",
     labelPhone: "Телефон",
     labelLinkedin: "LinkedIn",
-    labelDownloadHint: "Завантажити PDF",
+    labelDownloadHint: "Завантажити PDF (UA)",
     certSectionLabel: "Навчання та мови",
     pageTitle: "Денис Паршенцев — Executive CV",
     pageDescription:
