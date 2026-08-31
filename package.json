@@ -4,6 +4,7 @@
   "scripts": {
     "test": "node scripts/validate.mjs",
     "test:smoke": "node scripts/smoke.mjs",
-    "generate:og": "python scripts/generate-og-image.py"
+    "generate:og": "python scripts/generate-og-image.py",
+    "generate:cv": "python scripts/generate-cv-pdf.py"
   }
 }
