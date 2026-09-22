@@ -1,6 +1,8 @@
 # CV сайт — Денис Паршенцев
 
-Контент **лише з Google Doc** (експорт у `cv-google.txt` для перевірки).
+Контент **лише з Google Doc** (експорт у `cv-google.txt` для перевірки), плюс контакти з власника: email `parshencevdenis@gmail.com`.
+
+Google / Bing **навмисно не індексують** (robots.txt + googlebot/bingbot noindex). Візитка для посилання рекрутеру, не для пошуку за ім’ям. Доступ за URL не обмежений.
 
 ## Перевірки
 
@@ -11,15 +13,23 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 
 ## Запуск
 
-Локально: відкрийте `index.html` у браузері.
+Локально: відкрийте `site.html` у браузері (або `index.html` — людину перекине на `/site`).
 
-**Посилання для всіх (Telegram, email, LinkedIn):** https://parshentsev-cv.vercel.app/?v=2
+**Посилання для месенджерів (прев’ю):** https://parshentsev-cv.vercel.app/?v=2  
+**Сама візитка:** https://parshentsev-cv.vercel.app/site  
+**Українська / англійська:** `?lang=uk` або `?lang=en` (наприклад `/site?lang=uk`). Вибір також пишеться в браузер.
 
-Корінь `/` автоматично перенаправляє на `/?v=2` (Telegram кешує кожну URL окремо; `v=2` — стабільна адреса з прев’ю).
+Корінь `/` перенаправляє на `/?v=2` (Telegram кешує кожну URL окремо). Людей з `/` і `/?v=2` JS веде на `/site`, зберігаючи `lang`.
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 
-Мови: **UA** / **EN** (англійська — переклад тексту з того ж документа).
+PDF: `cv.pdf` (UA) і `cv-en.pdf` (EN) — кнопка Download на сайті дає файл мови інтерфейсу.
+
+```bash
+npm run generate:cv     # обидва PDF
+```
+
+Оптимізація фото (WebP/AVIF) — пізніше.
 
 ## Оновлення з Google Docs
 
@@ -35,5 +45,8 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 | Файл | Призначення |
 |------|-------------|
 | `content.js` | Усі тексти сайту |
+| `site.html` | Повна візитка |
+| `index.html` | OG-лендінг для Telegram (`/?v=2`) |
+| `cv.pdf` / `cv-en.pdf` | PDF українською / англійською |
 | `cv-google.txt` | Останній експорт з Google Doc |
-| `index.html`, `styles.css`, `script.js` | Сайт |
+

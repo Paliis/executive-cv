@@ -10,6 +10,7 @@ const paths = [
   "/favicon.svg",
   "/site.webmanifest",
   "/cv.pdf",
+  "/cv-en.pdf",
   "/og-image.jpg",
   "/share.jpg",
   "/photo.png",

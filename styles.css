@@ -1014,14 +1014,19 @@ main {
   line-height: 1;
 }
 
-/* Reveal */
+/* Reveal: visible without JS. Animation only after script.js succeeds. */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+html.js-anim .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.reveal.is-visible {
+html.js-anim .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1304,12 +1309,13 @@ main {
     scroll-behavior: auto;
   }
 
-  .reveal,
+  html.js-anim .reveal,
   .back-to-top {
     transition: none;
   }
 
-  .reveal {
+  .reveal,
+  html.js-anim .reveal {
     opacity: 1;
     transform: none;
   }

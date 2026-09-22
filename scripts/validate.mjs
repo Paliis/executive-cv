@@ -64,6 +64,7 @@ function countArrayPairs(obj, name) {
 }
 
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
+const siteHtml = fs.readFileSync(path.join(root, "site.html"), "utf8");
 const content = loadContent();
 
 // Required assets
@@ -75,8 +76,9 @@ for (const file of [
   "content.js",
   "og-image.jpg",
   "share.jpg",
-  "photo.png",
   "cv.pdf",
+  "cv-en.pdf",
+  "photo.png",
   "robots.txt",
   "vercel.json",
   "favicon.svg",
@@ -101,9 +103,18 @@ if (html.includes('name="robots"') && html.includes("noindex")) {
 }
 if (!html.includes('property="og:image"')) fail("index.html missing og:image meta");
 if (html.includes("heroName")) fail("index.html must be OG-only (full site is site.html)");
-const siteHtml = fs.readFileSync(path.join(root, "site.html"), "utf8");
 if (!siteHtml.includes('id="heroName"')) fail("site.html missing hero markup");
+if (!siteHtml.includes('rel="canonical"') || !siteHtml.includes("/site")) {
+  fail("site.html canonical should point at /site");
+}
+if (!html.includes("/?v=2")) fail("index.html OG landing should reference /?v=2");
 if (!content.meta?.siteUrl?.startsWith("https://")) fail("content.meta.siteUrl must be absolute https URL");
+if (!content.meta?.email?.includes("@")) fail("content.meta.email is required");
+if (!siteHtml.includes("mailto:" + content.meta.email)) fail("site.html missing mailto for meta.email");
+if (!siteHtml.includes('id="cvDownload"')) fail("site.html missing #cvDownload");
+if (!content.meta?.pdf?.uk?.href || !content.meta?.pdf?.en?.href) {
+  fail("content.meta.pdf must define uk and en downloads");
+}
 
 const vercel = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"));
 const xRobots = vercel.headers?.some((h) =>
@@ -122,7 +133,7 @@ for (const k of enKeys) {
 }
 
 // data-i18n in HTML
-const i18nInHtml = [...html.matchAll(/data-i18n="([^"]+)"/g)].map((m) => m[1]);
+const i18nInHtml = [...siteHtml.matchAll(/data-i18n="([^"]+)"/g)].map((m) => m[1]);
 for (const key of i18nInHtml) {
   const parts = key.split(".");
   let ukVal = content.uk;
@@ -136,14 +147,17 @@ for (const key of i18nInHtml) {
 }
 
 // Section anchors vs nav
-const sectionIds = [...html.matchAll(/<section[^>]+id="([^"]+)"/g)].map((m) => m[1]);
-const navHrefs = [...html.matchAll(/class="nav__link"[^>]+href="#([^"]+)"/g)].map((m) => m[1]);
+const sectionIds = [...siteHtml.matchAll(/<section[^>]+id="([^"]+)"/g)].map((m) => m[1]);
+const navHrefs = [...siteHtml.matchAll(/href="#([^"]+)" class="nav__link/g)].map((m) => m[1]);
 for (const href of navHrefs) {
   if (!sectionIds.includes(href)) fail(`Nav href #${href} has no matching section id`);
 }
 
 // DOM ids used in script.js
 const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
+if (!script.includes("atEnd") || !script.includes("langFromUrl")) {
+  fail("script.js should handle end-of-page nav and ?lang=");
+}
 const idsInScript = [...script.matchAll(/getElementById\("([^"]+)"\)/g)].map((m) => m[1]);
 for (const id of idsInScript) {
   if (!siteHtml.includes(`id="${id}"`)) fail(`script.js expects #${id} but site.html has no such id`);
@@ -167,6 +181,36 @@ if (/менеджер|sales manager/i.test(JSON.stringify([playUk, playEn]))) {
 // Meta
 if (!content.meta.phone.startsWith("+")) warn("meta.phone should be E.164");
 if (!content.meta.linkedin.includes("linkedin.com")) fail("Invalid LinkedIn URL");
+if (content.meta.email !== "parshencevdenis@gmail.com") fail("Unexpected email");
+if (!content.meta.phoneDisplay.uk.includes("+380 50")) fail("UA phone display should use +380 format");
+if (content.meta.pdf.uk.href !== "cv.pdf" || content.meta.pdf.en.href !== "cv-en.pdf") {
+  fail("PDF hrefs must be language-specific");
+}
+if (!content.roles.uk.some((r) => r.includes("Генеральний директор"))) {
+  fail("CEO role should be a separate pill");
+}
+if (!content.roles.uk.some((r) => r.includes("Операційний директор"))) {
+  fail("COO role should be a separate pill");
+}
+if (content.roles.uk.some((r) => /CEO.*COO|COO.*CEO/.test(r))) {
+  fail("CEO and COO must not be combined in one role string");
+}
+if (!/оборот/i.test(content.impact.uk[0].desc) || !/дотепер|квітень 2023/i.test(content.impact.uk[0].desc)) {
+  fail("×16 impact must state turnover + period");
+}
+if (!/працівників/.test(content.impact.uk[4].desc)) {
+  fail("10 000+ impact must mention employees/працівників");
+}
+if (/по теперішній|Поточний час/.test(JSON.stringify(content.experience.uk))) {
+  fail("Experience periods should use «дотепер», not «по теперішній / Поточний»");
+}
+if (/проект[^і]|проектуван|рітейлер/.test(JSON.stringify(content.experience.uk) + JSON.stringify(content.expertise.uk))) {
+  fail("Ukrainian copy should use проєкт / проєктування / ритейлер spelling");
+}
+if (!siteHtml.includes("mailto:parshencevdenis@gmail.com")) fail("site contact mailto missing");
+if (!/html\.js-anim \.reveal/.test(fs.readFileSync(path.join(root, "styles.css"), "utf8"))) {
+  fail("styles.css should gate reveal animation behind html.js-anim");
+}
 
 console.log(`\nCV site validation (${root})\n`);
 if (warnings.length) {

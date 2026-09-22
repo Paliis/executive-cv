@@ -3,7 +3,13 @@
   const { meta, impact, specializations, experience, expertise, roles, industries, certification } =
     window.CV_CONTENT;
 
-  let currentLang = localStorage.getItem(STORAGE_KEY) || "en";
+  function langFromUrl() {
+    const value = new URLSearchParams(window.location.search).get("lang");
+    if (value === "uk" || value === "en") return value;
+    return null;
+  }
+
+  let currentLang = langFromUrl() || localStorage.getItem(STORAGE_KEY) || "en";
 
   const header = document.getElementById("header");
   const navToggle = document.getElementById("navToggle");
@@ -142,7 +148,7 @@
     const title = t("pageTitle");
     const description = t("pageDescription");
     const imageAlt = meta.photoAlt?.[lang] || meta.photoAlt?.en || "";
-    const pageUrl = meta.siteUrl + (meta.sharePath || "");
+    const pageUrl = `${meta.siteUrl}/site?lang=${lang}`;
     const imageUrl = meta.siteUrl + (meta.shareImage || "/photo.png");
 
     setMetaContent('meta[name="description"]', description);
@@ -158,10 +164,19 @@
     setMetaContent('meta[name="twitter:image:alt"]', imageAlt);
   }
 
-  function applyLanguage(lang) {
+  function applyLanguage(lang, { persistUrl = true } = {}) {
     currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang === "uk" ? "uk" : "en";
+
+    if (persistUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      const next = `${url.pathname}${url.search}${url.hash}`;
+      if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+        history.replaceState(null, "", next);
+      }
+    }
 
     document.title = t("pageTitle");
     updateShareMeta(lang);
@@ -187,8 +202,17 @@
     const contactLoc = document.getElementById("contactLocation");
     if (contactLoc) contactLoc.textContent = meta.location[lang];
     document.getElementById("contactPhone").textContent = meta.phoneDisplay[lang];
+    const contactEmail = document.getElementById("contactEmail");
+    if (contactEmail && meta.email) contactEmail.textContent = meta.email;
     document.getElementById("contactLinkedin").textContent = meta.linkedinLabel;
     document.querySelector(".nav__brand-icon").textContent = meta.initials;
+
+    const pdfLink = document.getElementById("cvDownload");
+    const pdf = meta.pdf?.[lang];
+    if (pdfLink && pdf) {
+      pdfLink.href = pdf.href;
+      pdfLink.setAttribute("download", pdf.download);
+    }
 
     const heroPhoto = document.getElementById("heroPhoto");
     if (heroPhoto && meta.photoAlt) heroPhoto.alt = meta.photoAlt[lang];
@@ -214,7 +238,15 @@
     });
 
     updateMenuAria();
+    document.documentElement.classList.add("js-anim");
     initReveal();
+    // Elements already in view must stay visible; otherwise js-anim blanks the page for a frame.
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("is-visible");
+      }
+    });
     updatePageNav();
   }
 
@@ -237,7 +269,13 @@
     if (backToTopBtn) backToTopBtn.classList.toggle("is-visible", y > 400);
 
     let currentId = "top";
-    if (y + offset >= 80) {
+    const scrollRoot = document.documentElement;
+    const canScroll = scrollRoot.scrollHeight > window.innerHeight + 8;
+    const atEnd = y + window.innerHeight >= scrollRoot.scrollHeight - 8;
+
+    if (canScroll && atEnd && sections.length) {
+      currentId = sections[sections.length - 1].id;
+    } else if (y + offset >= 80) {
       sections.forEach((section) => {
         if (section.offsetTop <= y + offset) currentId = section.id;
       });

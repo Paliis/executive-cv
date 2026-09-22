@@ -6,15 +6,20 @@ window.CV_CONTENT = {
     birthDate: { uk: "25.11.1981", en: "Nov 25, 1981" },
     location: { uk: "Дніпро", en: "Dnipro" },
     phone: "+380503633127",
-    phoneDisplay: { uk: "+38 050 363 31 27", en: "+38 050 363 31 27" },
+    phoneDisplay: { uk: "+380 50 363 31 27", en: "+380 50 363 31 27" },
+    email: "parshencevdenis@gmail.com",
     linkedin: "https://www.linkedin.com/in/denis-parshentsev/",
     linkedinLabel: "linkedin.com/in/denis-parshentsev",
+    pdf: {
+      uk: { href: "cv.pdf", download: "CV-Parshentsev-Denys-2026-UK.pdf" },
+      en: { href: "cv-en.pdf", download: "CV-Parshentsev-Denis-2026-EN.pdf" },
+    },
     photoAlt: {
       uk: "Денис Паршенцев — професійне фото",
       en: "Denis Parshentsev — professional portrait",
     },
     siteUrl: "https://parshentsev-cv.vercel.app",
-    sharePath: "/?v=2",
+    sharePath: "/site",
     shareImage: "/share.jpg",
   },
 
@@ -35,7 +40,7 @@ window.CV_CONTENT = {
     menuClose: "Закрити меню",
     langSwitchLabel: "Мова",
     heroKicker: "Executive CV",
-    heroTitle: "CEO / COO / Head of E-commerce / CBDO",
+    heroTitle: "CEO · COO · Head of E-commerce · CBDO",
     ctaPrimary: "Зв'язатися",
     ctaSecondary: "Ключові результати",
     ctaDownload: "Завантажити CV (PDF)",
@@ -54,12 +59,13 @@ window.CV_CONTENT = {
     rolesTitle: "Цільові позиції",
     contactTitle: "Контакти",
     labelPhone: "Телефон",
+    labelEmail: "Email",
     labelLinkedin: "LinkedIn",
-    labelDownloadHint: "Завантажити PDF (UA)",
+    labelDownloadHint: "PDF українською",
     certSectionLabel: "Навчання та мови",
     pageTitle: "Денис Паршенцев — Executive CV",
     pageDescription:
-      "CEO / COO / Head of E-commerce. LOKO, VARUS, АЛЛО. Дніпро.",
+      "CEO, COO, Head of E-commerce. LOKO, VARUS, АЛЛО. Дніпро.",
   },
 
   en: {
@@ -79,7 +85,7 @@ window.CV_CONTENT = {
     menuClose: "Close menu",
     langSwitchLabel: "Language",
     heroKicker: "Executive CV",
-    heroTitle: "CEO / COO / Head of E-commerce / CBDO",
+    heroTitle: "CEO · COO · Head of E-commerce · CBDO",
     ctaPrimary: "Contact",
     ctaSecondary: "Key results",
     ctaDownload: "Download CV (PDF)",
@@ -98,11 +104,12 @@ window.CV_CONTENT = {
     rolesTitle: "Target positions",
     contactTitle: "Contact",
     labelPhone: "Phone",
+    labelEmail: "Email",
     labelLinkedin: "LinkedIn",
-    labelDownloadHint: "Download PDF",
+    labelDownloadHint: "English PDF",
     certSectionLabel: "Education & languages",
     pageTitle: "Denis Parshentsev — Executive CV",
-    pageDescription: "CEO / COO / Head of E-commerce. LOKO, VARUS, ALLO. Dnipro.",
+    pageDescription: "CEO, COO, Head of E-commerce. LOKO, VARUS, ALLO. Dnipro.",
   },
 
   industries: {
@@ -122,18 +129,18 @@ window.CV_CONTENT = {
 
   impact: {
     uk: [
-      { metric: "×16", desc: "Масштабування бізнес-платформи LOKO за обсягом обороту" },
+      { metric: "×16", desc: "Оборот бізнес-платформи LOKO, квітень 2023 — дотепер" },
       { metric: "60+ міст", desc: "Географічна експансія Q-commerce мережі в Україні" },
       { metric: "150+ полігонів", desc: "Операційне покриття delivery-мережі" },
       { metric: "150+ осіб", desc: "Керівництво бізнес-юнітами у великих структурах" },
-      { metric: "10 000+", desc: "Досвід роботи в корпоративних структурах національного масштабу" },
+      { metric: "10 000+", desc: "Досвід у компаніях із понад 10 000 працівників" },
     ],
     en: [
-      { metric: "×16", desc: "LOKO business platform turnover scaling" },
+      { metric: "×16", desc: "LOKO business platform turnover, April 2023 — present" },
       { metric: "60+ cities", desc: "Q-commerce network geographic expansion in Ukraine" },
       { metric: "150+ zones", desc: "Operational delivery network coverage" },
       { metric: "150+ people", desc: "Leadership of business units in large organizations" },
-      { metric: "10,000+", desc: "Experience in corporate structures of national scale" },
+      { metric: "10,000+", desc: "Experience in companies with 10,000+ employees" },
     ],
   },
 
@@ -178,12 +185,14 @@ window.CV_CONTENT = {
 
   roles: {
     uk: [
-      "CEO / Операційний директор (COO)",
+      "Генеральний директор (CEO)",
+      "Операційний директор (COO)",
       "Директор з електронної комерції (Head of E-commerce)",
       "Директор з розвитку бізнесу (CBDO)",
     ],
     en: [
-      "CEO / Chief Operating Officer (COO)",
+      "Chief Executive Officer (CEO)",
+      "Chief Operating Officer (COO)",
       "Head of E-commerce / E-commerce Director",
       "Chief Business Development Officer (CBDO)",
     ],
@@ -192,13 +201,13 @@ window.CV_CONTENT = {
   experience: {
     uk: [
       {
-        period: "Квітень 2023 — по теперішній час",
+        period: "Квітень 2023 — дотепер",
         company: "LOKO (Fozzy Group)",
         context:
-          "Q-commerce екосистема у складі найбільшого продуктового рітейлера України.",
-        role: "Заступник керівника LOKO з питань стратегічних проектів та партнерств",
+          "Q-commerce екосистема у складі найбільшого продуктового ритейлера України.",
+        role: "Заступник керівника LOKO з питань стратегічних проєктів та партнерств",
         duties: [
-          "Стратегічне управління, фінансове планування, бюджетування та супровід продукту на етапі масштабування бізнес-платформи у 16 разів за загальним обсягом обороту.",
+          "Стратегічне управління, фінансове планування, бюджетування та супровід продукту на етапі масштабування бізнес-платформи у 16 разів за оборотом (квітень 2023 — дотепер).",
           "Управління Unit-економікою напряму та супровід бізнесу на шляху до цільових показників операційної прибутковості та EBITDA підрозділу.",
           "Формування стратегічного роадмапу платформи та визначення пріоритетів розвитку цифрового продукту в інтересах бізнес-напряму.",
           "Побудова, розвиток та координація крос-функціональної взаємодії між командами маркетингу, розвитку та відкриття, комерції, напрямку мерчантів, аналітики та операційним департаментом холдингу.",
@@ -207,7 +216,7 @@ window.CV_CONTENT = {
         ],
         results: [
           "Керування під ключ та координація запусків масштабних стратегічних партнерств із міжнародними агрегаторами (Glovo, Bolt Food) та великими системними B2B-сервісами (Ліки24 та інші).",
-          "Забезпечення бізнесового та аналітичного супроводу з боку LOKO у проектах географічної експансії сервісу, що дозволило розгорнути найбільшу Q-commerce мережу в Україні (понад 60 міст та 150+ операційних полігонів, випередивши міжнародних агрегаторів) у синергії з операційною командою холдингу.",
+          "Забезпечення бізнесового та аналітичного супроводу з боку LOKO у проєктах географічної експансії сервісу, що дозволило розгорнути найбільшу Q-commerce мережу в Україні (понад 60 міст та 150+ операційних полігонів, випередивши міжнародних агрегаторів) у синергії з операційною командою холдингу.",
           "Формування ціннісної архітектури продукту (CVP), оптимізація користувацьких сценаріїв (CJM) та стратегічна валідація Product-Market Fit для масштабування комерційних вертикалей платформи.",
           "Розробка і впровадження інструментів динамічного управління порогами доставки, моделей Surge Price та механіки двоетапної оплати замовлень, спрямованих на системне покращення Unit-економіки підрозділу.",
         ],
@@ -222,11 +231,11 @@ window.CV_CONTENT = {
         intro:
           "Стратегічне управління, фінансове планування та повний контроль P&L-показників діджитал-дирекції компанії. Розробка, впровадження та виведення на цільову рентабельність операційної бізнес-моделі онлайн-напряму. Керування крос-функціональними вертикалями: асортиментна політика, ціноутворення, інфраструктура збирання замовлень, внутрішня логістика «останньої милі», digital-маркетинг та єдиний клієнтський сервіс.",
         results: [
-          "Комплексний аудит операційних процесів та проектування з нуля верхньорівневої архітектури нової e-commerce платформи компанії, включаючи організацію тендерів та вибір технологічних підрядників.",
+          "Комплексний аудит операційних процесів та проєктування з нуля верхньорівневої архітектури нової e-commerce платформи компанії, включаючи організацію тендерів та вибір технологічних підрядників.",
           "Налагодження процесів продуктової розробки з ефективною синхронізацією внутрішніх IT-команд та зовнішніх розробників.",
-          "Проектування інфраструктурної та фінансової моделі відкриття великого Dark Store, включаючи аудит поточних потужностей, прорахунок Unit-економіки проекту та формування техніко-економічного обґрунтування для затвердження бюджетування.",
+          "Проєктування інфраструктурної та фінансової моделі відкриття великого Dark Store, включаючи аудит поточних потужностей, прорахунок Unit-економіки проєкту та формування техніко-економічного обґрунтування для затвердження бюджетування.",
           "Перебудова логістичної моделі «останньої милі», впровадження нових стандартів контролю часових слотів та збереження температурного режиму доставки.",
-          "Реалізація низки стратегічних та соціальних проектів, включаючи розгортання благодійної платформи «Кошики Добра».",
+          "Реалізація низки стратегічних та соціальних проєктів, включаючи розгортання благодійної платформи «Кошики Добра».",
         ],
         resultsKey: "resultsLabelShort",
       },
@@ -234,12 +243,12 @@ window.CV_CONTENT = {
         period: "2016 — 2020",
         company: "Група компаній АЛЛО",
         context:
-          "АЛЛО — національний рітейлер та один із найбільших e-commerce маркетплейсів України в сегменті споживчої електроніки та техніки.",
+          "АЛЛО — національний ритейлер та один із найбільших e-commerce маркетплейсів України в сегменті споживчої електроніки та техніки.",
         role: "Керівник онлайн-напряму, Керівник відділу розвитку бізнесу АЛЛО-online",
         intro:
           "Стратегічне управління, бюджетування та операційне планування діяльності онлайн-департаменту компанії. Розробка та реалізація стратегії омніканального бізнесу (Omnichannel) та побудова платформи маркетплейсу. Керування комерційними перемовинами з ключовими українськими та закордонними партнерами.",
         results: [
-          "Проектування архітектури та запуск масштабування платформи інтернет-магазину у повноцінний Highload-продукт: платформа маркетплейсу, адаптивний сайт та мобільний застосунок.",
+          "Проєктування архітектури та запуск масштабування платформи інтернет-магазину у повноцінний Highload-продукт: платформа маркетплейсу, адаптивний сайт та мобільний застосунок.",
           "Впровадження системи наскрізної аналітики та моделей ROPO (Research Online, Purchase Offline), що дозволило точно оцінювати взаємозв'язок діджитал-трафіку з продажами у фізичній роздрібній мережі.",
           "Формування внутрішньої структури розробки та супроводу цифрових продуктів, налагодження синхронної роботи кількох внутрішніх та зовнішніх команд за методологіями Agile.",
           "Позиціонування онлайн-підрозділу як внутрішнього центру технологічних інновацій, що прискорило впровадження нових інструментів у масштабах усієї компанії.",
@@ -282,7 +291,7 @@ window.CV_CONTENT = {
         context: "Q-commerce ecosystem within Ukraine's largest grocery retailer.",
         role: "Deputy Head of LOKO, Strategic Projects & Partnerships",
         duties: [
-          "Strategic management, financial planning, budgeting and product support while scaling the business platform turnover by 16×.",
+          "Strategic management, financial planning, budgeting and product support while scaling business platform turnover 16× (April 2023 — present).",
           "Unit economics ownership and support toward target operating profit and division EBITDA.",
           "Platform strategic roadmap and digital product development priorities for the business line.",
           "Cross-functional coordination across marketing, expansion, commerce, merchants, analytics and holding operations.",
@@ -365,7 +374,7 @@ window.CV_CONTENT = {
     uk: [
       {
         title: "Масштаб управління",
-        desc: "Досвід керівництва бізнес-юнітами чисельністю 150+ осіб у великих корпоративних структурах (понад 10 000 співробітників).",
+        desc: "Досвід керівництва бізнес-юнітами чисельністю 150+ осіб у компаніях із понад 10 000 працівників.",
       },
       {
         title: "Організаційні зміни",
@@ -385,13 +394,13 @@ window.CV_CONTENT = {
       },
       {
         title: "Комунікації топ-рівня",
-        desc: "Складні комерційні переговори, публічні виступи та пітчинг перед інвесторами й акціонерами.",
+        desc: "Складні комерційні переговори, публічні виступи та пітчинг проєктів перед інвесторами й акціонерами.",
       },
     ],
     en: [
       {
         title: "Leadership scale",
-        desc: "Units of 150+ people within corporate structures of 10,000+ employees.",
+        desc: "Units of 150+ people within companies of 10,000+ employees.",
       },
       {
         title: "Organizational change",
@@ -419,7 +428,7 @@ window.CV_CONTENT = {
   certification: {
     uk: [
       {
-        label: "Управління проектами",
+        label: "Управління проєктами",
         text: "U Open University",
         detail: "Lic. UOU2018032503",
       },
