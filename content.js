@@ -39,6 +39,8 @@ window.CV_CONTENT = {
     menuClose: "Закрити меню",
     langSwitchLabel: "Мова",
     heroKicker: "Executive CV",
+    heroTitleLine1: "Операційний директор (COO)",
+    heroTitleLine2: "Head of E‑commerce",
     heroTitle: "Операційний директор (COO) · Head of E‑commerce",
     ctaPrimary: "Зв'язатися",
     ctaSecondary: "Ключові результати",
@@ -83,6 +85,8 @@ window.CV_CONTENT = {
     menuClose: "Close menu",
     langSwitchLabel: "Language",
     heroKicker: "Executive CV",
+    heroTitleLine1: "Chief Operating Officer (COO)",
+    heroTitleLine2: "Head of E‑commerce",
     heroTitle: "Chief Operating Officer (COO) · Head of E‑commerce",
     ctaPrimary: "Contact",
     ctaSecondary: "Key results",
@@ -156,7 +160,7 @@ window.CV_CONTENT = {
       },
       {
         metric: "4–5",
-        desc: "Function leads on the VARUS Ecommerce management team",
+        desc: "Function heads on the VARUS Ecommerce management team",
         employer: "VARUS · 2020–2023",
       },
       {
@@ -299,7 +303,7 @@ window.CV_CONTENT = {
         context: "Dedicated e-commerce unit of a national supermarket chain (E-Grocery).",
         role: "Deputy Director of E-commerce / Chief Operating Officer (COO)",
         intro:
-          "Built and developed the e-commerce operating model, budgeting, P&L and financial reporting. Led 4–5 function leads; at selected stages also IT and marketing.",
+          "Built and developed the e-commerce operating model, budgeting, P&L and financial reporting. Managed 4–5 department heads; at selected stages also IT and marketing.",
         results: [
           "**Business and financial models.** Assessed early-stage e-commerce and designed models for operating and scaling the unit.",
           "**Platform and delivery.** Launched a new e-commerce platform and in-house delivery with specialist teams and vendors.",
@@ -360,7 +364,7 @@ window.CV_CONTENT = {
         company: "Earlier career",
         duties: [
           "Private entrepreneur (2006–2007): sales and rollout of GPS fleet monitoring.",
-          "Play Mobile Technology LLC (2005–2007): B2B mobile telecom sales and corporate acquisition.",
+          "Play Mobile Technology LLC (2005–2007): B2B mobile telecom sales and corporate client acquisition.",
         ],
       },
     ],

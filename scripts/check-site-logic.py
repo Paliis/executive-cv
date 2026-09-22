@@ -20,13 +20,15 @@ def main() -> int:
         assert page.locator("#contactEmail").inner_text() == "parshencevdenis@gmail.com"
         assert "+380" in page.locator("#contactPhone").inner_text()
         assert "COO" in page.locator(".hero__role").inner_text()
+        assert page.locator(".hero__role-line").count() == 2
         assert page.locator(".lang-switch__btn.is-active").inner_text() == "EN"
 
         page.click("[data-lang=uk]")
         page.wait_for_timeout(300)
         assert page.locator("#cvDownload").get_attribute("href") == "cv.pdf"
         assert "lang=uk" in page.url
-        assert "Операційний директор" in page.locator(".hero__role").inner_text()
+        assert "Операційний директор (COO)" in page.locator(".hero__role-line").first.inner_text()
+        assert "Head of E" in page.locator(".hero__role-line").nth(1).inner_text()
 
         roles = page.locator("#rolesPills .pill").all_inner_texts()
         assert roles[0].startswith("Операційний"), roles

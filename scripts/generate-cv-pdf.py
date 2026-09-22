@@ -133,11 +133,11 @@ h2 {
 ul { margin: 0 0 0 13pt; padding: 0; }
 li { margin: 0 0 3.5pt; padding-left: 1pt; }
 li b { font-weight: 700; }
-.role-block { margin: 8pt 0 0; }
-.role-block:first-of-type { margin-top: 2pt; }
+.role-block { margin: 14pt 0 0; padding-top: 8pt; }
+.role-block:first-of-type { margin-top: 2pt; padding-top: 0; }
 .project {
-  margin-top: 8pt;
-  padding-top: 6pt;
+  margin-top: 10pt;
+  padding-top: 7pt;
   border-top: 0.6pt solid #e2e8f0;
 }
 .compact p, .compact li { margin-bottom: 2.5pt; }
@@ -221,7 +221,7 @@ HTML_UK = f"""<!DOCTYPE html>
     </ul>
   </section>
 
-  <section class="job job--page">
+  <section class="job job--keep">
     <p class="company">АЛЛО-online</p>
     <span class="dates">2012–2016</span>
     <p class="role">Керівник відділу продажів</p>
@@ -232,13 +232,13 @@ HTML_UK = f"""<!DOCTYPE html>
       <li><b>Розвиток мережі.</b> Будував процеси роботи філій; організовував перевірку нових рішень у підпорядкованих підрозділах перед масштабуванням.</li>
       <li><b>Автоматизація та управління результативністю.</b> Формував ТЗ для IT, впроваджував регламенти, KPI та системи мотивації; планував діяльність і витрати підрозділів.</li>
     </ul>
+  </section>
 
-    <div class="role-block">
-      <p class="company" style="font-size:13.5pt">АЛЛО</p>
-      <span class="dates">2007–2012</span>
-      <p class="role">Директор Дніпропетровської філії інтернет-магазину</p>
-      <p class="intro">Побудував роботу філії з нуля: підбір команди, операційні процеси, планування витрат, мотивація персоналу та взаємодія зі службами компанії. Надалі перейшов до управління операціями АЛЛО-online на національному рівні.</p>
-    </div>
+  <section class="job job--page job--keep">
+    <p class="company">АЛЛО</p>
+    <span class="dates">2007–2012</span>
+    <p class="role">Директор Дніпропетровської філії інтернет-магазину</p>
+    <p class="intro">Побудував роботу філії з нуля: підбір команди, операційні процеси, планування витрат, мотивація персоналу та взаємодія зі службами компанії. Надалі перейшов до управління операціями АЛЛО-online на національному рівні.</p>
 
     <div class="project">
       <p class="role">Окремий проєкт у межах АЛЛО: Oracle JD Edwards</p>
@@ -300,7 +300,7 @@ HTML_EN = f"""<!DOCTYPE html>
       <span class="metric__desc">ALLO-online operating structure, 2012–2016</span>
     </div>
     <div class="metric">
-      <span class="metric__value">4–5 leads</span>
+      <span class="metric__value">4–5 function heads</span>
       <span class="metric__desc">Management team at VARUS Ecommerce</span>
     </div>
   </div>
@@ -325,7 +325,7 @@ HTML_EN = f"""<!DOCTYPE html>
     <p class="company">VARUS Ecommerce</p>
     <span class="dates">2020–2023</span>
     <p class="role">Deputy Director of E-commerce / Chief Operating Officer</p>
-    <p class="intro">Built and developed the e-commerce operating model, budgeting, P&amp;L management and financial reporting for the unit. Led 4–5 function leads. Owned picking, delivery and customer service; at selected stages also IT and marketing.</p>
+    <p class="intro">Built and developed the e-commerce operating model, budgeting, P&amp;L management and financial reporting for the unit. Managed 4–5 department heads. Owned picking, delivery and customer service; at selected stages also IT and marketing.</p>
     <ul>
       <li><b>Business and financial models.</b> Assessed e-commerce at an early stage and designed models for operating and scaling the unit.</li>
       <li><b>Platform and delivery.</b> With specialist teams and vendors, launched a new e-commerce platform and in-house delivery, building the matching operating processes.</li>
@@ -347,7 +347,7 @@ HTML_EN = f"""<!DOCTYPE html>
     </ul>
   </section>
 
-  <section class="job job--page">
+  <section class="job job--keep">
     <p class="company">ALLO-online</p>
     <span class="dates">2012–2016</span>
     <p class="role">Head of Sales</p>
@@ -358,13 +358,13 @@ HTML_EN = f"""<!DOCTYPE html>
       <li><b>Network development.</b> Built branch operating processes and piloted new solutions in reporting units before scaling.</li>
       <li><b>Automation and performance management.</b> Wrote IT specs, introduced playbooks, KPIs and incentive systems; planned unit activity and spend.</li>
     </ul>
+  </section>
 
-    <div class="role-block">
-      <p class="company" style="font-size:13.5pt">ALLO</p>
-      <span class="dates">2007–2012</span>
-      <p class="role">Director, Dnipro internet-store branch</p>
-      <p class="intro">Built the branch from scratch: team hiring, operating processes, cost planning, staff incentives and interfaces with company services. Later moved into national ALLO-online operations leadership.</p>
-    </div>
+  <section class="job job--page job--keep">
+    <p class="company">ALLO</p>
+    <span class="dates">2007–2012</span>
+    <p class="role">Director, Dnipro internet-store branch</p>
+    <p class="intro">Built the branch from scratch: team hiring, operating processes, cost planning, staff incentives and interfaces with company services. Later moved into national ALLO-online operations leadership.</p>
 
     <div class="project">
       <p class="role">Separate project within ALLO: Oracle JD Edwards</p>
@@ -381,7 +381,7 @@ HTML_EN = f"""<!DOCTYPE html>
     <h2>Earlier career</h2>
     <ul>
       <li>Private entrepreneur (2006–2007): sales and rollout of GPS fleet monitoring.</li>
-      <li>Play Mobile Technology LLC (2005–2007): B2B mobile telecom sales and corporate acquisition.</li>
+      <li>Play Mobile Technology LLC (2005–2007): B2B mobile telecom sales and corporate client acquisition.</li>
     </ul>
 
     <h2>Education &amp; development</h2>
