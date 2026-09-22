@@ -14,6 +14,7 @@ const paths = [
   "/og-image.jpg",
   "/share.jpg",
   "/photo.png",
+  "/photo.webp",
   "/styles.css",
   "/script.js",
   "/content.js",

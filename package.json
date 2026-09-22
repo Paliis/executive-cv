@@ -5,6 +5,8 @@
     "test": "node scripts/validate.mjs",
     "test:smoke": "node scripts/smoke.mjs",
     "generate:og": "python scripts/generate-og-image.py",
-    "generate:cv": "python scripts/generate-cv-pdf.py"
+    "generate:cv": "python scripts/generate-cv-pdf.py",
+    "generate:photo": "python scripts/optimize-photo.py",
+    "test:logic": "python scripts/check-site-logic.py"
   }
 }

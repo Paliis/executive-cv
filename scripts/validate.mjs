@@ -79,6 +79,8 @@ for (const file of [
   "cv.pdf",
   "cv-en.pdf",
   "photo.png",
+  "photo.webp",
+  "photo.avif",
   "robots.txt",
   "vercel.json",
   "favicon.svg",
@@ -115,6 +117,8 @@ if (!siteHtml.includes('id="cvDownload"')) fail("site.html missing #cvDownload")
 if (!content.meta?.pdf?.uk?.href || !content.meta?.pdf?.en?.href) {
   fail("content.meta.pdf must define uk and en downloads");
 }
+if (!siteHtml.includes("photo.webp")) fail("site.html should use photo.webp");
+if (!siteHtml.includes('id="competencies"')) fail("legacy #competencies anchor alias missing");
 
 const vercel = JSON.parse(fs.readFileSync(path.join(root, "vercel.json"), "utf8"));
 const xRobots = vercel.headers?.some((h) =>
@@ -152,6 +156,7 @@ const navHrefs = [...siteHtml.matchAll(/href="#([^"]+)" class="nav__link/g)].map
 for (const href of navHrefs) {
   if (!sectionIds.includes(href)) fail(`Nav href #${href} has no matching section id`);
 }
+if (navHrefs.includes("competencies")) fail("nav should not list removed competencies section");
 
 // DOM ids used in script.js
 const script = fs.readFileSync(path.join(root, "script.js"), "utf8");
@@ -164,19 +169,28 @@ for (const id of idsInScript) {
 }
 
 // Data arrays
-for (const name of ["industries", "impact", "specializations", "roles", "experience", "expertise", "certification"]) {
+for (const name of ["industries", "impact", "roles", "experience", "expertise", "certification"]) {
   if (!content[name]) fail(`Missing content.${name}`);
   else countArrayPairs(content, name);
 }
+if (content.specializations) fail("specializations should be merged into expertise");
+if (content.expertise.uk.length !== 5) fail("expertise should have 5 competency cards");
+if (content.impact.uk.length !== 5) fail("impact should have 5 cards");
 
-// Experience: Play Mobile without sales manager role
-const playUk = content.experience.uk.find((j) => j.company.includes("Плей"));
-const playEn = content.experience.en.find((j) => /Play Mobile/i.test(j.company));
-if (!playUk || !playEn) fail("Play Mobile entry missing");
-if (playUk.role || playEn.role) fail("Play Mobile should not have role field");
-if (/менеджер|sales manager/i.test(JSON.stringify([playUk, playEn]))) {
-  fail("Play Mobile still mentions sales manager in content");
+// Early career compressed (no separate Play Mobile company row with role)
+const earlyUk = content.experience.uk.find((j) => /Ранній|2005/.test(j.company + j.period));
+const earlyEn = content.experience.en.find((j) => /Earlier|2005/.test(j.company + j.period));
+if (!earlyUk || !earlyEn) fail("Early career entry missing");
+if (earlyUk.role || earlyEn.role) fail("Early career should not have a role field");
+
+const lokoUk = content.experience.uk.find((j) => j.company.includes("LOKO"));
+if (!lokoUk?.role?.includes("Заступник") || !lokoUk?.role?.includes("CBDM")) {
+  fail("LOKO role must keep Заступник title with CBDM clarification");
 }
+const alloSales = content.experience.uk.find((j) => j.period.includes("2012"));
+if (!alloSales?.intro?.includes("150+")) fail("150+ headcount must sit on ALLO sales 2012–2016");
+const erp = content.experience.uk.find((j) => /Oracle|JD Edwards/i.test(j.role || ""));
+if (!erp) fail("Oracle JD Edwards must be a separate ALLO project entry");
 
 // Meta
 if (!content.meta.phone.startsWith("+")) warn("meta.phone should be E.164");
@@ -186,20 +200,20 @@ if (!content.meta.phoneDisplay.uk.includes("+380 50")) fail("UA phone display sh
 if (content.meta.pdf.uk.href !== "cv.pdf" || content.meta.pdf.en.href !== "cv-en.pdf") {
   fail("PDF hrefs must be language-specific");
 }
-if (!content.roles.uk.some((r) => r.includes("Генеральний директор"))) {
-  fail("CEO role should be a separate pill");
-}
-if (!content.roles.uk.some((r) => r.includes("Операційний директор"))) {
-  fail("COO role should be a separate pill");
-}
+if (!content.roles.uk[0].includes("Операційний директор")) fail("First target role should be COO");
+if (!content.roles.uk.some((r) => /CEO невеликого/i.test(r))) fail("CEO of small business role missing");
 if (content.roles.uk.some((r) => /CEO.*COO|COO.*CEO/.test(r))) {
   fail("CEO and COO must not be combined in one role string");
 }
-if (!/оборот/i.test(content.impact.uk[0].desc) || !/дотепер|квітень 2023/i.test(content.impact.uk[0].desc)) {
+if (!/оборот/i.test(content.impact.uk[0].desc) || !/квітн/i.test(content.impact.uk[0].desc)) {
   fail("×16 impact must state turnover + period");
 }
-if (!/працівників/.test(content.impact.uk[4].desc)) {
-  fail("10 000+ impact must mention employees/працівників");
+if (!content.impact.uk[0].note) fail("×16 card needs business-outcome note");
+if (!/цільових|пенетраційних/.test(content.impact.uk[3].desc)) {
+  fail("90% card must describe target/penetration SKU availability");
+}
+if (!/Oracle|JD Edwards/i.test(content.impact.uk[4].desc + content.impact.uk[4].metric)) {
+  fail("Fifth impact card should cover Oracle JD Edwards ERP");
 }
 if (/по теперішній|Поточний час/.test(JSON.stringify(content.experience.uk))) {
   fail("Experience periods should use «дотепер», not «по теперішній / Поточний»");
@@ -207,9 +221,18 @@ if (/по теперішній|Поточний час/.test(JSON.stringify(cont
 if (/проект[^і]|проектуван|рітейлер/.test(JSON.stringify(content.experience.uk) + JSON.stringify(content.expertise.uk))) {
   fail("Ukrainian copy should use проєкт / проєктування / ритейлер spelling");
 }
+if (!/Незавершена вища/.test(content.certification.uk[0].text)) {
+  fail("Education must state incomplete higher education");
+}
 if (!siteHtml.includes("mailto:parshencevdenis@gmail.com")) fail("site contact mailto missing");
 if (!/html\.js-anim \.reveal/.test(fs.readFileSync(path.join(root, "styles.css"), "utf8"))) {
   fail("styles.css should gate reveal animation behind html.js-anim");
+}
+if (!script.includes("writeStoredLang") || !script.includes("readStoredLang")) {
+  fail("script.js should guard localStorage access");
+}
+if (!/header\.offsetHeight \+ 84/.test(script)) {
+  fail("updatePageNav offset should align with scroll-margin (~header+84)");
 }
 
 console.log(`\nCV site validation (${root})\n`);

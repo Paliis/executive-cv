@@ -1,7 +1,24 @@
 (function () {
   const STORAGE_KEY = "cv-lang";
-  const { meta, impact, specializations, experience, expertise, roles, industries, certification } =
-    window.CV_CONTENT;
+  const { meta, impact, experience, expertise, roles, industries, certification } = window.CV_CONTENT;
+
+  function readStoredLang() {
+    try {
+      const value = localStorage.getItem(STORAGE_KEY);
+      if (value === "uk" || value === "en") return value;
+    } catch {
+      /* private mode / blocked storage */
+    }
+    return null;
+  }
+
+  function writeStoredLang(lang) {
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      /* ignore */
+    }
+  }
 
   function langFromUrl() {
     const value = new URLSearchParams(window.location.search).get("lang");
@@ -9,7 +26,7 @@
     return null;
   }
 
-  let currentLang = langFromUrl() || localStorage.getItem(STORAGE_KEY) || "en";
+  let currentLang = langFromUrl() || readStoredLang() || "en";
 
   const header = document.getElementById("header");
   const navToggle = document.getElementById("navToggle");
@@ -30,7 +47,7 @@
   }
 
   function escapeHtml(str) {
-    return str
+    return String(str)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -56,18 +73,7 @@
       <article class="impact-card card reveal">
         <div class="impact-card__metric">${escapeHtml(item.metric)}</div>
         <p class="impact-card__desc">${escapeHtml(item.desc)}</p>
-      </article>`
-      )
-      .join("");
-  }
-
-  function renderSpecializations() {
-    document.getElementById("whatGrid").innerHTML = specializations[currentLang]
-      .map(
-        (item) => `
-      <article class="feature-card card reveal">
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.desc)}</p>
+        ${item.note ? `<p class="impact-card__note">${escapeHtml(item.note)}</p>` : ""}
       </article>`
       )
       .join("");
@@ -166,7 +172,7 @@
 
   function applyLanguage(lang, { persistUrl = true } = {}) {
     currentLang = lang;
-    localStorage.setItem(STORAGE_KEY, lang);
+    writeStoredLang(lang);
     document.documentElement.lang = lang === "uk" ? "uk" : "en";
 
     if (persistUrl) {
@@ -226,7 +232,6 @@
     renderPills("industriesPills", industries[lang]);
     renderPills("rolesPills", roles[lang]);
     renderImpact();
-    renderSpecializations();
     renderExpertise();
     renderExperience();
     renderCertification();
@@ -240,7 +245,6 @@
     updateMenuAria();
     document.documentElement.classList.add("js-anim");
     initReveal();
-    // Elements already in view must stay visible; otherwise js-anim blanks the page for a frame.
     document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -263,7 +267,8 @@
   }
 
   function updatePageNav() {
-    const offset = header.offsetHeight + 80;
+    // Align with scroll-margin-top (~header + 0.75rem ≈ 84px) so active tab matches clicked section.
+    const offset = header.offsetHeight + 84;
     const y = window.scrollY;
 
     if (backToTopBtn) backToTopBtn.classList.toggle("is-visible", y > 400);
@@ -286,6 +291,14 @@
     });
   }
 
+  function resolveLegacyHash() {
+    if (location.hash === "#competencies") {
+      history.replaceState(null, "", `${location.pathname}${location.search}#expertise`);
+      const target = document.getElementById("expertise");
+      if (target) target.scrollIntoView();
+    }
+  }
+
   langButtons.forEach((btn) => {
     btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
   });
@@ -303,6 +316,10 @@
   );
 
   window.addEventListener("resize", updatePageNav, { passive: true });
+  window.addEventListener("hashchange", () => {
+    resolveLegacyHash();
+    updatePageNav();
+  });
 
   navToggle.addEventListener("click", () => {
     const isOpen = navList.classList.toggle("is-open");
@@ -312,13 +329,14 @@
   });
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", closeMobileNav);
+    link.addEventListener("click", () => {
+      closeMobileNav();
+      window.setTimeout(updatePageNav, 50);
+    });
   });
 
   if (navBrand) navBrand.addEventListener("click", closeMobileNav);
   if (backToTopBtn) backToTopBtn.addEventListener("click", closeMobileNav);
-
-  updatePageNav();
 
   let revealObserver;
   function initReveal() {
@@ -341,5 +359,7 @@
     if (!el.classList.contains("reveal")) el.classList.add("reveal");
   });
 
+  resolveLegacyHash();
   applyLanguage(currentLang);
+  updatePageNav();
 })();

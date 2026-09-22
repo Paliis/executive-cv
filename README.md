@@ -26,10 +26,10 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 PDF: `cv.pdf` (UA) і `cv-en.pdf` (EN) — кнопка Download на сайті дає файл мови інтерфейсу.
 
 ```bash
-npm run generate:cv     # обидва PDF
+npm run generate:cv      # обидва PDF
+npm run generate:photo   # photo.webp / photo.avif
+npm test && npm run test:logic
 ```
-
-Оптимізація фото (WebP/AVIF) — пізніше.
 
 ## Оновлення з Google Docs
 

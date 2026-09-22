@@ -643,6 +643,13 @@ main {
   line-height: 1.6;
 }
 
+.impact-card__note {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #71717a;
+  line-height: 1.45;
+}
+
 /* Grids */
 .cards-grid {
   display: grid;
@@ -657,20 +664,29 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-.cards-grid--competencies {
+.cards-grid--expertise {
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 640px) {
-  .cards-grid--competencies {
+  .cards-grid--expertise {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
-  .cards-grid--competencies {
-    grid-template-columns: repeat(4, 1fr);
+@media (min-width: 1100px) {
+  .cards-grid--expertise {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.anchor-alias {
+  position: relative;
+  top: calc(-1 * (var(--header-h) + 0.75rem));
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .feature-card h3,
@@ -870,7 +886,7 @@ main {
 
 @media (min-width: 640px) {
   .contact-links {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -899,6 +915,8 @@ main {
 .contact-link__value {
   margin-top: 0.25rem;
   font-weight: 500;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Footer */
@@ -922,7 +940,13 @@ main {
 
 @media (min-width: 640px) {
   .footer__certs {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__certs {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1215,7 +1239,7 @@ html.js-anim .reveal.is-visible {
     gap: 1.5rem;
   }
 
-  .cards-grid--competencies {
+  .cards-grid--expertise {
     gap: 1.5rem;
   }
 
