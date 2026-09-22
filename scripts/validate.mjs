@@ -199,15 +199,20 @@ const bannedPhrases = [
   "Overall LOKO P&L",
   "Загальний P&L LOKO",
   "кандидат готував",
+  "деталі під NDA",
+  "details under NDA",
 ];
 const blob = JSON.stringify(content.experience);
 for (const phrase of bannedPhrases) {
   if (blob.includes(phrase)) fail(`Internal accuracy note leaked into CV: ${phrase}`);
 }
-const alloSales = content.experience.uk.find((j) => j.period.includes("2012"));
+const alloGroup = content.experience.uk.find((j) => j.roles?.length);
+if (!alloGroup) fail("ALLO career must be grouped as one employer with roles[]");
+const alloSales = alloGroup.roles.find((r) => /2012/.test(r.period));
 if (!alloSales?.intro?.includes("150+")) fail("150+ headcount must sit on ALLO sales 2012–2016");
-const erp = content.experience.uk.find((j) => /Oracle|JD Edwards/i.test(j.role || ""));
-if (!erp) fail("Oracle JD Edwards must be a separate ALLO project entry");
+if (!alloGroup.project || !/Oracle|JD Edwards/i.test(alloGroup.project.role)) {
+  fail("Oracle JD Edwards must be a project within the ALLO employer group");
+}
 
 // Meta
 if (!content.meta.phone.startsWith("+")) warn("meta.phone should be E.164");
@@ -222,13 +227,15 @@ if (!content.roles.uk.some((r) => /CEO невеликого/i.test(r))) fail("CE
 if (content.roles.uk.some((r) => /CEO.*COO|COO.*CEO/.test(r))) {
   fail("CEO and COO must not be combined in one role string");
 }
-if (!/оборот/i.test(content.impact.uk[0].desc) || !/квітн/i.test(content.impact.uk[0].desc)) {
+if (!/64 міст/i.test(content.impact.uk[0].desc)) fail("First impact card should cover 64 cities expansion");
+if (!/150\+/.test(content.impact.uk[1].metric + content.impact.uk[1].desc)) {
+  fail("Second impact card must cover 150+ ALLO operating structure");
+}
+if (!/4–5|4-5/.test(content.impact.uk[2].metric)) fail("Third impact card must cover 4–5 function leads");
+if (!/оборот/i.test(content.impact.uk[3].desc) || !/квітн/i.test(content.impact.uk[3].desc)) {
   fail("×16 impact must state turnover + period");
 }
-if (!content.impact.uk[0].note) fail("×16 card needs business-outcome note");
-if (!/цільових|пенетраційних/.test(content.impact.uk[3].desc)) {
-  fail("90% card must describe target/penetration SKU availability");
-}
+if (!content.impact.uk[3].note) fail("×16 card needs business-outcome note");
 if (!/Oracle|JD Edwards/i.test(content.impact.uk[4].desc + content.impact.uk[4].metric)) {
   fail("Fifth impact card should cover Oracle JD Edwards ERP");
 }

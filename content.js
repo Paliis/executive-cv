@@ -42,13 +42,13 @@ window.CV_CONTENT = {
     heroTitle: "Операційний директор (COO) · Head of E‑commerce",
     ctaPrimary: "Зв'язатися",
     ctaSecondary: "Ключові результати",
-    ctaDownload: "Завантажити CV (PDF)",
+    ctaDownload: "Завантажити CV",
     labelDownload: "CV (PDF)",
     summaryTitle: "Профіль",
     summary:
-      "Керівник із досвідом в e-commerce та ритейлі з 2007 року: АЛЛО, VARUS, LOKO / Fozzy Group. Поєдную управління операціями та P&L із розвитком цифрових продуктів, запуском каналів продажів і підвищенням ефективності бізнесу.",
+      "Керівник з досвідом розвитку e-commerce та управління операціями в АЛЛО, VARUS і LOKO / Fozzy Group. Поєдную бюджетування та P&L із операційними моделями, цифровими продуктами і запуском каналів продажів.",
     summary2:
-      "Досвід охоплює операційну структуру зі 150+ працівниками, продуктову модель e-commerce, доставку й цифрові платформи, ERP та координацію масштабування сервісу до 64 міст.",
+      "Керував структурою зі 150+ працівниками та командами керівників напрямів. Сильна сторона — міжфункціональна організація та перетворення ініціатив на керовані процеси з показниками результату.",
     industriesLabel: "Сфери",
     impactTitle: "Масштаб досвіду та результати",
     expertiseTitle: "Управлінська експертиза",
@@ -86,13 +86,13 @@ window.CV_CONTENT = {
     heroTitle: "Chief Operating Officer (COO) · Head of E‑commerce",
     ctaPrimary: "Contact",
     ctaSecondary: "Key results",
-    ctaDownload: "Download CV (PDF)",
+    ctaDownload: "Download CV",
     labelDownload: "CV (PDF)",
     summaryTitle: "Profile",
     summary:
-      "Operator and product leader in e-commerce and retail since 2007: ALLO, VARUS, LOKO / Fozzy Group. I combine operations and P&L ownership with digital product development, sales-channel launches and business efficiency.",
+      "Operations and digital product leader in e-commerce and retail at ALLO, VARUS and LOKO / Fozzy Group. I combine budgeting and P&L with operating models, digital products and sales-channel launches.",
     summary2:
-      "Experience covers an operating structure of 150+ people, product-led e-commerce, delivery and digital platforms, ERP delivery from the business side, and coordinated scaling of a service to 64 cities.",
+      "Led a 150+ person operating structure and teams of function leads. Strength: cross-functional organization and turning initiatives into managed processes with performance metrics.",
     industriesLabel: "Focus",
     impactTitle: "Scale of experience and results",
     expertiseTitle: "Management expertise",
@@ -118,48 +118,56 @@ window.CV_CONTENT = {
   impact: {
     uk: [
       {
-        metric: "×16",
-        desc: "Зростання обороту LOKO за період роботи з квітня 2023 року",
-        note: "Результат бізнесу; особистий внесок — у розділі досвіду",
-      },
-      {
         metric: "64 міста",
-        desc: "Координація підтримки географічного масштабування LOKO з командами холдингу",
+        desc: "Координація розширення LOKO до 64 міст із командами холдингу",
+        employer: "LOKO / Fozzy Group",
       },
       {
         metric: "150+",
-        desc: "Операційна структура АЛЛО-online: філії, склади, видача та доставка (2012–2016)",
+        desc: "Операційна структура АЛЛО-online: філії, склади, видача та доставка",
+        employer: "АЛЛО-online · 2012–2016",
       },
       {
-        metric: "До 90%",
-        desc: "Доступність цільових та пенетраційних артикулів у LOKO",
+        metric: "4–5",
+        desc: "Керівники напрямів у команді управління VARUS Ecommerce",
+        employer: "VARUS · 2020–2023",
+      },
+      {
+        metric: "×16",
+        desc: "Зростання обороту бізнесу LOKO за період роботи з квітня 2023 року",
+        note: "Результат бізнесу; особистий внесок — у розділі досвіду",
       },
       {
         metric: "ERP",
         desc: "Oracle JD Edwards — впровадження з боку бізнесу: процеси, облік, перехід і звірки",
+        employer: "АЛЛО",
       },
     ],
     en: [
       {
-        metric: "×16",
-        desc: "LOKO turnover growth during tenure from April 2023",
-        note: "Business outcome; personal contribution is in Experience",
-      },
-      {
         metric: "64 cities",
-        desc: "Coordinated LOKO geographic scale-up with holding operations and marketing teams",
+        desc: "Coordinated LOKO expansion to 64 cities with holding teams",
+        employer: "LOKO / Fozzy Group",
       },
       {
         metric: "150+",
-        desc: "ALLO-online operating structure: branches, warehouses, pickup and delivery (2012–2016)",
+        desc: "ALLO-online operating structure: branches, warehouses, pickup and delivery",
+        employer: "ALLO-online · 2012–2016",
       },
       {
-        metric: "Up to 90%",
-        desc: "Availability of target and penetration SKUs in LOKO",
+        metric: "4–5",
+        desc: "Function leads on the VARUS Ecommerce management team",
+        employer: "VARUS · 2020–2023",
+      },
+      {
+        metric: "×16",
+        desc: "LOKO business turnover growth during tenure from April 2023",
+        note: "Business outcome; personal contribution is in Experience",
       },
       {
         metric: "ERP",
         desc: "Oracle JD Edwards — business-side rollout: processes, accounting, cutover and reconciliations",
+        employer: "ALLO",
       },
     ],
   },
@@ -187,86 +195,77 @@ window.CV_CONTENT = {
         context: "Q-commerce екосистема у складі Fozzy Group.",
         role: "Заступник керівника LOKO з питань стратегічних проєктів та партнерств",
         intro:
-          "Відповідальність за ініціативи додаткового зростання та ефективності продуктового напряму. Управління напрямом агрегаторів, включно з бюджетуванням і продажами. Пряма команда менеджерів та координація маркетингу, операційної команди, юридичної служби й інших підрозділів холдингу.",
+          "Відповідаю за ініціативи зростання й підвищення ефективності продуктового напряму. Керую напрямом агрегаторів, включно з бюджетуванням і продажами, та командою менеджерів; координую взаємодію з підрозділами холдингу.",
         results: [
-          "Запустив і розвинув канал продажів через Glovo та Bolt Food: бізнес-модель, домовленості, взаємодія команд, операційні процеси та виконання показників напряму.",
-          "Координував взаємодію LOKO з операційною та маркетинговою командами холдингу під час розширення географії сервісу до 64 міст.",
-          "Розширив пропозицію за рахунок асортименту торгових залів офлайн-філій: зростання асортименту в кілька разів і доступність цільових та пенетраційних артикулів до 90%.",
-          "Впровадив ініціативи покращення економіки: пороги доставки, динамічні тарифи, платне пакування, сервісні збори, двоетапна оплата — з вимірюваним позитивним ефектом на EBITDA (деталі під NDA).",
-          "Розробив бізнесові та юридичні схеми для нових напрямів продажів, зокрема регульованої категорії лікарських засобів, разом із юридичною службою та партнерами.",
+          "**Новий канал продажів.** Запустив і розвиваю напрям агрегаторів: бізнес-модель, партнерські домовленості, операційні процеси та показники результативності.",
+          "**Географічне масштабування.** Координував взаємодію LOKO з операційною командою та маркетингом холдингу під час розширення сервісу до 64 міст.",
+          "**Асортимент і доступність.** Розширив пропозицію за рахунок асортименту торгових залів офлайн-філій; доступність цільових та пенетраційних артикулів — до 90%.",
+          "**Підвищення операційної ефективності.** Впровадив ініціативи щодо порогів доставки, динамічних тарифів, пакування, сервісних зборів і двоетапної оплати з вимірюваним позитивним впливом на EBITDA.",
+          "**Нові напрями продажів.** Розробляв бізнес-моделі та юридичні механізми для регульованих категорій, зокрема лікарських засобів, із юридичною службою та партнерами.",
         ],
         resultsKey: "resultsLabel",
       },
       {
         period: "2020 — 2023",
         company: "VARUS Ecommerce",
-        context:
-          "Виділений e-commerce юніт національної мережі супермаркетів (E-Grocery).",
+        context: "Виділений e-commerce юніт національної мережі супермаркетів (E-Grocery).",
         role: "Заступник директора з електронної комерції / операційний директор (COO)",
         intro:
-          "Управління операційною моделлю e-commerce: збирання, доставка, клієнтський сервіс; 4–5 керівників напрямів у підпорядкуванні. Бюджетування, управління P&L та фінансова звітність дирекції. На окремих етапах — також IT і маркетинг; комерція була розподілена з холдингом. Готував і захищав інвестиційні рішення перед комітетами холдингу.",
+          "Побудова та розвиток операційної моделі e-commerce, бюджетування, P&L і фінансова звітність. У підпорядкуванні — 4–5 керівників напрямів; на окремих етапах — також IT і маркетинг.",
         results: [
-          "На основі аудиту розробив бізнесову й фінансову моделі розвитку напряму та організував побудову операційних процесів.",
-          "Організував тендери, підготовку та захист бізнесових і технологічних рішень на рівні холдингу; керував бюджетуванням поточних витрат у межах повноважень.",
-          "Забезпечив запуск нової e-commerce платформи та власної доставки у взаємодії з профільними командами й підрядниками.",
-          "Побудував процес збирання замовлень і протоколи взаємодії e-commerce з операційною командою мережі.",
-          "Підготував інвестиційний кейс великого даркстору (модель, інфраструктура, розрахунки).",
+          "**Бізнесова та фінансова моделі.** Проаналізував стан e-commerce і розробив моделі подальшої роботи та масштабування.",
+          "**Платформа й доставка.** Запустив нову e-commerce платформу та власну доставку з профільними командами й підрядниками.",
+          "**Взаємодія з мережею.** Організував процес збирання замовлень і протоколи взаємодії з операційною командою мережі.",
+          "**Фінанси та інвестиції.** Вів бюджетування, готував тендери та захищав бізнесові й IT-рішення перед комітетами холдингу.",
+          "**Планування інфраструктури.** Підготував інвестиційний кейс великого даркстору: модель, інфраструктура, розрахунки.",
         ],
         resultsKey: "resultsLabelShort",
       },
       {
-        period: "2016 — 2020",
         company: "Група компаній АЛЛО",
-        context:
-          "Національний ритейлер електроніки; онлайн як окремий департамент.",
-        role: "Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online",
-        intro:
-          "Відповідальність за розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Управління продуктовою командою, проєктними менеджерами, дизайнерами, QA та зовнішніми командами.",
-        results: [
-          "Керував розвитком сайту й мобільного застосунку та продуктовою підтримкою виконання бізнес-показників онлайн-каналу.",
-          "Організував розробку платформи маркетплейсу на початковому етапі: продуктові вимоги, пріоритети та координація команд.",
-          "Впровадив ROPO-аналітику для зв’язку онлайн-взаємодій із покупками у фізичній мережі.",
-          "Планував бюджети розвитку цифрових продуктів і координував внутрішні та зовнішні команди.",
+        period: "2007 — 2020",
+        context: "Національний ритейлер електроніки; онлайн як окремий департамент.",
+        roles: [
+          {
+            period: "2016 — 2020",
+            role: "Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online",
+            intro:
+              "Розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Продуктова команда, проєктні менеджери, дизайнери, QA та зовнішні команди.",
+            results: [
+              "**Сайт і застосунок.** Організовував розвиток продуктів і підтримку бізнес-показників онлайн-каналу.",
+              "**Платформа маркетплейсу.** Керував продуктовою роботою на початковому етапі: вимоги, пріоритети, взаємодія команд.",
+              "**ROPO-аналітика.** Впровадив аналітику зв’язку онлайн-взаємодій із покупками у фізичних магазинах.",
+            ],
+          },
+          {
+            period: "2012 — 2016",
+            role: "Керівник відділу продажів АЛЛО-online",
+            intro:
+              "Операційна структура зі 150+ працівниками: філії, склади, точки видачі, кур’єри. У прямому підпорядкуванні — директори філій і керівники сервісних підрозділів.",
+            results: [
+              "**Повний цикл замовлення.** Організовував обробку, видачу, власну доставку, перевізників, підтримку та післяпродажне обслуговування.",
+              "**Складські операції.** Власні склади, облік і переобліки, взаємодія з логістикою та приймання від клієнтів.",
+              "**Розвиток мережі.** Будував процеси філій і перевіряв нові рішення перед масштабуванням.",
+              "**Автоматизація та KPI.** Формував ТЗ для IT, впроваджував регламенти, KPI та мотивацію; планував витрати підрозділів.",
+            ],
+          },
+          {
+            period: "2007 — 2012",
+            role: "Директор Дніпропетровської філії інтернет-магазину",
+            intro:
+              "Побудував роботу філії з нуля: команда, процеси, витрати, мотивація та взаємодія зі службами компанії. Далі — управління операціями АЛЛО-online на національному рівні.",
+          },
         ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "2012 — 2016",
-        company: "Група компаній АЛЛО",
-        role: "Керівник відділу продажів АЛЛО-online",
-        intro:
-          "Управління операційною структурою зі 150+ працівниками (філії, кур’єри, логісти, касири, склади, точки видачі). Пряме підпорядкування директорів філій та керівників сервісних відділів. Повний цикл від обробки замовлення до видачі, доставки та післяпродажного обслуговування.",
-        results: [
-          "Будував мережу філій і процеси виконання онлайн-замовлень: обробка, видача, власна доставка, перевізники, підтримка та приймання після продажу.",
-          "Керував власними складами, обліком, переобліками та взаємодією з логістикою компанії.",
-          "Відпрацьовував нові бізнес-процеси у філіях із подальшим масштабуванням.",
-          "Формував ТЗ для IT, тестував і впроваджував зміни; розробляв процедури, інструкції та документообіг.",
-          "Планував бюджети підрозділів, оптимізував витрати, впроваджував KPI та мотивацію персоналу.",
-        ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "2007 — 2012",
-        company: "Група компаній АЛЛО",
-        role: "Директор Дніпропетровської філії інтернет-магазину",
-        results: [
-          "Організував роботу філії з нуля: персонал, операційні процеси, планування витрат і взаємодія зі службами компанії та партнерами.",
-          "Впровадив систему мотивації персоналу; далі — перехід до управління загальнонаціональною структурою АЛЛО-online.",
-        ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "У межах роботи в АЛЛО",
-        company: "Група компаній АЛЛО",
-        role: "Окремий проєкт — впровадження Oracle JD Edwards",
-        intro:
-          "Участь у впровадженні Oracle JD Edwards з боку бізнесу.",
-        results: [
-          "Формування вимог, ТЗ та логіки онлайн-операцій, сервісу, фінансового обліку й звірок.",
-          "Організація переходу з паралельним веденням систем, узгодженням і звірянням даних.",
-          "Запуск на філіях, консолідація даних і взаємодія з контрольно-ревізійним управлінням.",
-        ],
-        resultsKey: "resultsLabelShort",
+        project: {
+          role: "Окремий проєкт у межах АЛЛО: Oracle JD Edwards",
+          intro:
+            "Участь у впровадженні ERP з боку бізнесу: вимоги онлайн-продажів і сервісу з процесами фінансового обліку.",
+          results: [
+            "Формував бізнес-вимоги та ТЗ; опрацьовував логіку операцій, сервісу, обліку й звірок.",
+            "Брав участь у переході між системами: паралельне ведення, узгодження даних, усунення розбіжностей.",
+            "Супроводжував запуск на філіях і звірку даних у взаємодії з контрольно-ревізійним управлінням.",
+          ],
+        },
       },
       {
         period: "2005 — 2007",
@@ -284,13 +283,13 @@ window.CV_CONTENT = {
         context: "Q-commerce ecosystem within Fozzy Group.",
         role: "Deputy Head of LOKO, Strategic Projects & Partnerships",
         intro:
-          "Accountable for incremental growth and efficiency initiatives in the grocery line. Owned the aggregators stream including budgeting and sales. Led a team of managers and coordinated marketing, operations, legal and other holding functions.",
+          "I drive growth and efficiency initiatives for the grocery line. Responsible for aggregator partnerships, budgeting and sales; lead a team of managers and coordinate holding functions.",
         results: [
-          "Launched and scaled Glovo and Bolt Food sales: business model, partner terms, team orchestration, operating processes and stream KPIs.",
-          "Coordinated LOKO with holding operations and marketing during geographic expansion to 64 cities.",
-          "Expanded the offer using in-store assortment from offline branches: multi-fold assortment growth and up to 90% availability of target and penetration SKUs.",
-          "Implemented profitability improvement initiatives: delivery thresholds, dynamic tariffs, paid packaging, service fees, two-step payment — with a measurable positive EBITDA effect (details under NDA).",
-          "Designed commercial and legal schemes for new sales streams, including regulated medicines, together with the legal team and partners.",
+          "**New sales channel.** Launched and continue to develop the aggregators stream: business model, partner terms, operating processes and performance metrics.",
+          "**Geographic scale-up.** Coordinated LOKO with holding operations and marketing while expanding the service to 64 cities.",
+          "**Assortment and availability.** Expanded the offer using assortment from physical stores; up to 90% availability of target and penetration SKUs.",
+          "**Operating efficiency.** Implemented delivery thresholds, dynamic tariffs, packaging, service fees and two-step payment with a measurable positive impact on EBITDA.",
+          "**New sales streams.** Developed business models and legal frameworks for regulated categories, including medicines, with the legal team and partners.",
         ],
         resultsKey: "resultsLabel",
       },
@@ -300,68 +299,61 @@ window.CV_CONTENT = {
         context: "Dedicated e-commerce unit of a national supermarket chain (E-Grocery).",
         role: "Deputy Director of E-commerce / Chief Operating Officer (COO)",
         intro:
-          "Owned the e-commerce operating model: picking, delivery, customer service; 4–5 function leads reporting in. Budgeting, P&L and financial reporting for the directorate. At selected stages also IT and marketing; commerce was shared with the holding. Prepared and justified investment proposals before holding committees.",
+          "Built and developed the e-commerce operating model, budgeting, P&L and financial reporting. Led 4–5 function leads; at selected stages also IT and marketing.",
         results: [
-          "Built business and financial models after an operational audit and stood up matching processes.",
-          "Ran tenders and presented business and technology proposals at holding level; owned day-to-day spend within mandate.",
-          "Delivered a new e-commerce platform and owned delivery with specialist teams and vendors.",
-          "Built order-picking process and e-commerce ↔ store-ops interaction protocols.",
-          "Prepared a large dark-store investment case (ops model, infrastructure, finance).",
+          "**Business and financial models.** Assessed early-stage e-commerce and designed models for operating and scaling the unit.",
+          "**Platform and delivery.** Launched a new e-commerce platform and in-house delivery with specialist teams and vendors.",
+          "**Store-network collaboration.** Set up order picking and e-commerce interaction protocols with the retail network’s operations team.",
+          "**Finance and investments.** Ran budgeting, managed tenders and presented business and technology investment proposals to group committees.",
+          "**Infrastructure planning.** Prepared a large dark-store investment case: operating model, infrastructure and finance.",
         ],
         resultsKey: "resultsLabelShort",
       },
       {
-        period: "2016 — 2020",
         company: "ALLO Group",
+        period: "2007 — 2020",
         context: "National electronics retailer; online as a dedicated department.",
-        role: "Head of Online / Head of Business Development, ALLO-online",
-        intro:
-          "Owned digital platform development, product metrics and team/dev budgets. Led product, PMs, design, QA and external engineering teams.",
-        results: [
-          "Led website and mobile app development and product support for online-channel business KPIs.",
-          "Drove early marketplace platform build: product requirements, priorities and team coordination.",
-          "Introduced ROPO analytics linking online interactions to in-store purchases.",
-          "Planned digital product budgets and coordinated internal and external teams.",
+        roles: [
+          {
+            period: "2016 — 2020",
+            role: "Head of Online / Head of Business Development, ALLO-online",
+            intro:
+              "Digital platform development, product metrics and team/engineering budgets. Led product, PMs, design, QA and external engineering teams.",
+            results: [
+              "**Website and mobile app.** Organized product development supporting online-channel business KPIs.",
+              "**Marketplace platform.** Led early-stage product work: requirements, priorities and team collaboration.",
+              "**ROPO analytics.** Introduced analytics linking online interactions to in-store purchases.",
+            ],
+          },
+          {
+            period: "2012 — 2016",
+            role: "Head of ALLO-online Sales",
+            intro:
+              "Operating structure of 150+ people across branches, warehouses, pickup points and couriers. Branch directors and service leads reported directly.",
+            results: [
+              "**End-to-end fulfillment.** Organized processing, pickup, in-house delivery, carriers, support and after-sales service.",
+              "**Warehouse operations.** In-house warehouses, stock control, recounts, logistics interfaces and customer returns.",
+              "**Network development.** Built branch processes and piloted solutions before scaling.",
+              "**Automation and KPIs.** Wrote IT specs, introduced playbooks, KPIs and incentives; planned unit spend.",
+            ],
+          },
+          {
+            period: "2007 — 2012",
+            role: "Director, Dnipro internet-store branch",
+            intro:
+              "Built the branch from scratch: team, processes, cost planning, incentives and company-service interfaces. Later moved into national ALLO-online operations leadership.",
+          },
         ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "2012 — 2016",
-        company: "ALLO Group",
-        role: "Head of ALLO-online Sales",
-        intro:
-          "Led an operating structure of 150+ people (branches, couriers, logistics, cashiers, warehouses, pickup points). Branch directors and service leads reported in. Full cycle from order processing to pickup, delivery and after-sales.",
-        results: [
-          "Built the branch network and online fulfillment: processing, pickup, owned delivery, carriers, support and returns.",
-          "Ran owned warehouses, stock control, recounts and company logistics interfaces.",
-          "Piloted new processes in branches and scaled what worked.",
-          "Wrote IT specs, tested and rolled out changes; authored procedures and document flow.",
-          "Planned unit budgets, cut costs, and ran KPI / incentive systems.",
-        ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "2007 — 2012",
-        company: "ALLO Group",
-        role: "Director, Dnipro internet-store branch",
-        results: [
-          "Built the branch from scratch: hiring, operations, cost planning and partner interfaces.",
-          "Introduced staff incentives; later promoted to lead the national ALLO-online structure.",
-        ],
-        resultsKey: "resultsLabelShort",
-      },
-      {
-        period: "Within ALLO tenure",
-        company: "ALLO Group",
-        role: "Separate project — Oracle JD Edwards ERP rollout",
-        intro:
-          "Business-side participation in the Oracle JD Edwards rollout.",
-        results: [
-          "Requirements, specs and logic for online ops, service, financial accounting and reconciliations.",
-          "Cutover with parallel systems, data alignment and reconciliation.",
-          "Branch go-live, data consolidation and work with internal audit (KRU).",
-        ],
-        resultsKey: "resultsLabelShort",
+        project: {
+          role: "Separate project within ALLO: Oracle JD Edwards",
+          intro:
+            "Business-side ERP participation, connecting online sales and service requirements with financial accounting processes.",
+          results: [
+            "Defined business requirements and specs; worked through ops, service, accounting and reconciliation logic.",
+            "Took part in cutover: parallel operations, data alignment and resolving discrepancies.",
+            "Supported branch go-live and data consolidation with internal audit / internal control.",
+          ],
+        },
       },
       {
         period: "2005 — 2007",

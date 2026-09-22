@@ -34,9 +34,10 @@ def main() -> int:
         assert not any("CEO" in r and "COO" in r for r in roles), roles
 
         impacts = page.locator(".impact-card__desc").all_inner_texts()
-        assert any("Оборот" in t or "оборот" in t for t in impacts), impacts
-        assert any("пенетраційних" in t or "цільових" in t for t in impacts), impacts
+        assert any("оборот" in t.lower() for t in impacts), impacts
+        assert any("64" in t for t in impacts), impacts
         assert page.locator(".impact-card__note").count() >= 1
+        assert any("90%" in t for t in page.locator(".exp-card").filter(has_text="LOKO").all_inner_texts()), "90% should live in LOKO results"
 
         assert page.locator("#expertiseGrid .expertise-card").count() == 5
         assert page.locator('a.nav__link[href="#competencies"]').count() == 0
@@ -44,6 +45,13 @@ def main() -> int:
         loko = page.locator(".exp-card").filter(has_text="LOKO").first
         assert "Заступник" in loko.inner_text()
         assert "CBDM" not in loko.inner_text()
+
+        allo = page.locator(".exp-card").filter(has_text="АЛЛО").first
+        assert "2012" in allo.inner_text()
+        assert "Oracle" in allo.inner_text()
+        assert page.locator(".exp-card__role-block").count() >= 3
+        assert page.locator("#heroCvDownload").count() == 1
+        assert "Завантажити" in page.locator("#heroCvDownload").inner_text()
 
         opacity = page.locator(".hero__name").evaluate("el => getComputedStyle(el).opacity")
         assert float(opacity) > 0.9, opacity

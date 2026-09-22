@@ -58,8 +58,13 @@
     return `<span class="pill">${escapeHtml(text)}</span>`;
   }
 
+  function formatRichText(str) {
+    const safe = escapeHtml(str);
+    return safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  }
+
   function listItems(items) {
-    return `<ul class="exp-card__list">${items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`;
+    return `<ul class="exp-card__list">${items.map((i) => `<li>${formatRichText(i)}</li>`).join("")}</ul>`;
   }
 
   function renderPills(containerId, items) {
@@ -73,6 +78,7 @@
       <article class="impact-card card reveal">
         <div class="impact-card__metric">${escapeHtml(item.metric)}</div>
         <p class="impact-card__desc">${escapeHtml(item.desc)}</p>
+        ${item.employer ? `<p class="impact-card__employer">${escapeHtml(item.employer)}</p>` : ""}
         ${item.note ? `<p class="impact-card__note">${escapeHtml(item.note)}</p>` : ""}
       </article>`
       )
@@ -91,24 +97,57 @@
       .join("");
   }
 
+  function renderRoleBlock(role) {
+    let html = `<div class="exp-card__role-block">`;
+    if (role.period) {
+      html += `<span class="exp-card__role-period">${escapeHtml(role.period)}</span>`;
+    }
+    if (role.role) {
+      html += `<p class="exp-card__role-sub">${escapeHtml(role.role)}</p>`;
+    }
+    if (role.intro) {
+      html += `<p class="exp-card__intro">${escapeHtml(role.intro)}</p>`;
+    }
+    if (role.results?.length) {
+      html += listItems(role.results);
+    }
+    html += `</div>`;
+    return html;
+  }
+
   function renderExperience() {
     document.getElementById("expList").innerHTML = experience[currentLang]
       .map((job) => {
         const resultsLabel = job.resultsKey ? t(job.resultsKey) : t("resultsLabelShort");
         let body = "";
-        if (job.intro) {
-          body += `<p class="exp-card__intro">${escapeHtml(job.intro)}</p>`;
+
+        if (job.roles?.length) {
+          body += job.roles.map(renderRoleBlock).join("");
+          if (job.project) {
+            body += `<div class="exp-card__project">
+              <p class="exp-card__role-sub">${escapeHtml(job.project.role)}</p>
+              ${job.project.intro ? `<p class="exp-card__intro">${escapeHtml(job.project.intro)}</p>` : ""}
+              ${job.project.results?.length ? listItems(job.project.results) : ""}
+            </div>`;
+          }
+        } else {
+          if (job.intro) {
+            body += `<p class="exp-card__intro">${escapeHtml(job.intro)}</p>`;
+          }
+          if (job.duties?.length) {
+            body += listItems(job.duties);
+          }
+          if (job.results?.length) {
+            body += `<p class="exp-card__results-label">${escapeHtml(resultsLabel)}</p>${listItems(job.results)}`;
+          }
         }
-        if (job.duties?.length) {
-          body += listItems(job.duties);
-        }
-        if (job.results?.length) {
-          body += `<p class="exp-card__results-label">${escapeHtml(resultsLabel)}</p>${listItems(job.results)}`;
-        }
+
         const context = job.context
           ? `<p class="exp-card__context">${escapeHtml(job.context)}</p>`
           : "";
-        const role = job.role ? `<p class="exp-card__role-sub">${escapeHtml(job.role)}</p>` : "";
+        const role = !job.roles && job.role
+          ? `<p class="exp-card__role-sub">${escapeHtml(job.role)}</p>`
+          : "";
 
         return `
       <li class="timeline__item">
@@ -213,11 +252,14 @@
     document.getElementById("contactLinkedin").textContent = meta.linkedinLabel;
     document.querySelector(".nav__brand-icon").textContent = meta.initials;
 
-    const pdfLink = document.getElementById("cvDownload");
     const pdf = meta.pdf?.[lang];
-    if (pdfLink && pdf) {
-      pdfLink.href = pdf.href;
-      pdfLink.setAttribute("download", pdf.download);
+    if (pdf) {
+      ["cvDownload", "heroCvDownload"].forEach((id) => {
+        const link = document.getElementById(id);
+        if (!link) return;
+        link.href = pdf.href;
+        link.setAttribute("download", pdf.download);
+      });
     }
 
     const heroPhoto = document.getElementById("heroPhoto");
@@ -355,7 +397,7 @@
     document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
   }
 
-  document.querySelectorAll(".hero__kicker, .hero__top-text, .hero__profile, .hero__industries, .hero__photo").forEach((el) => {
+  document.querySelectorAll(".hero__kicker, .hero__top-text, .hero__profile, .hero__photo").forEach((el) => {
     if (!el.classList.contains("reveal")) el.classList.add("reveal");
   });
 

@@ -1,4 +1,4 @@
-"""Generate UA + EN CV PDFs aligned with site content.js editorial."""
+"""Generate UA + EN executive CV PDFs (3-page, source-driven)."""
 from __future__ import annotations
 
 import shutil
@@ -29,172 +29,243 @@ CSS = r"""
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
   font-family: "CV", Arial, sans-serif;
-  font-size: 10.5pt;
-  line-height: 1.28;
-  color: #000;
+  font-size: 10.75pt;
+  line-height: 1.4;
+  color: #111;
   background: #fff;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
 }
+a { color: #1d4ed8; text-decoration: none; }
+.header {
+  display: grid;
+  grid-template-columns: 1fr 74pt;
+  gap: 10pt 14pt;
+  align-items: start;
+  margin-bottom: 10pt;
+}
+.header__text { min-width: 0; }
 .photo {
-  float: right;
-  width: 112pt;
-  height: 140pt;
+  width: 74pt;
+  height: 94pt;
   object-fit: cover;
   object-position: 50% 18%;
-  margin: 0 0 8pt 10pt;
+  border-radius: 2pt;
 }
-h1 { font-size: 20pt; font-weight: 700; line-height: 1.1; margin: 0 0 3pt; }
-.role-line { font-size: 11.5pt; font-weight: 700; margin: 0 0 5pt; }
-.meta { font-size: 10pt; line-height: 1.35; margin-bottom: 1.5pt; }
-a { color: #1155CC; text-decoration: underline; }
-h2 {
-  font-size: 11.5pt;
+h1 {
+  font-size: 27pt;
   font-weight: 700;
-  margin: 9pt 0 4pt;
-  clear: both;
-  border-bottom: 0.6pt solid #222;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 3pt;
+  color: #0a0a0a;
+}
+.role-line {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin: 0 0 6pt;
+  line-height: 1.25;
+}
+.meta { font-size: 10pt; line-height: 1.45; color: #222; margin: 0 0 1.5pt; }
+.skills-line {
+  margin-top: 7pt;
+  font-size: 9.75pt;
+  color: #333;
+  line-height: 1.35;
+}
+h2 {
+  font-size: 13.5pt;
+  font-weight: 700;
+  margin: 11pt 0 5pt;
+  color: #0a0a0a;
+  border-bottom: 1.1pt solid #1d4ed8;
   padding-bottom: 2pt;
 }
-ul { margin: 0 0 3pt 16pt; padding: 0; }
-li { margin: 0 0 2pt; }
-.job { page-break-inside: avoid; break-inside: avoid; }
-.company {
-  font-weight: 700;
-  font-style: italic;
+.profile p { margin: 0 0 5pt; }
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6pt;
   margin: 8pt 0 2pt;
-  padding-left: 16pt;
-  position: relative;
 }
-.company::before {
-  content: "●";
-  position: absolute;
-  left: 3pt;
-  font-style: normal;
+.metric {
+  border: 0.7pt solid #cbd5e1;
+  border-radius: 3pt;
+  padding: 6pt 7pt;
+  background: #f8fafc;
+}
+.metric__value {
+  display: block;
+  font-size: 12.5pt;
+  font-weight: 700;
+  color: #1d4ed8;
+  line-height: 1.15;
+  margin-bottom: 2pt;
+}
+.metric__desc { font-size: 8.75pt; line-height: 1.3; color: #334155; }
+.job { margin: 0 0 11pt; }
+.job--keep { page-break-inside: avoid; break-inside: avoid; }
+.job--page { page-break-before: always; break-before: page; }
+.company {
+  font-size: 15.5pt;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1pt;
+  color: #0a0a0a;
+}
+.dates {
+  display: block;
+  font-size: 9.75pt;
   font-weight: 400;
+  color: #475569;
+  margin: 0 0 4pt;
 }
-.context { font-style: italic; margin: 0 0 3pt 16pt; }
-.role { font-weight: 700; margin: 2pt 0 2pt 16pt; }
-.intro { margin: 0 0 2pt 16pt; }
-.label { font-weight: 700; margin: 3pt 0 2pt 16pt; }
-.dates { white-space: nowrap; }
-.chips { margin: 0 0 5pt; }
-.chip { display: inline-block; margin: 0 4pt 2pt 0; padding: 1pt 6pt; border: 0.5pt solid #888; border-radius: 3pt; font-size: 9pt; }
+.role {
+  font-size: 11.25pt;
+  font-weight: 700;
+  margin: 0 0 3pt;
+  line-height: 1.3;
+}
+.intro { margin: 0 0 4pt; }
+ul { margin: 0 0 0 13pt; padding: 0; }
+li { margin: 0 0 3.5pt; padding-left: 1pt; }
+li b { font-weight: 700; }
+.role-block { margin: 8pt 0 0; }
+.role-block:first-of-type { margin-top: 2pt; }
+.project {
+  margin-top: 8pt;
+  padding-top: 6pt;
+  border-top: 0.6pt solid #e2e8f0;
+}
+.compact p, .compact li { margin-bottom: 2.5pt; }
+.compact h2 { margin-top: 10pt; }
 """
 
 HTML_UK = f"""<!DOCTYPE html>
 <html lang="uk">
 <head><meta charset="UTF-8"><title>Денис Паршенцев — CV</title><style>{CSS}</style></head>
 <body>
-  <img class="photo" src="photo.png" alt="Денис Паршенцев">
-  <h1>Денис Паршенцев</h1>
-  <p class="role-line">Операційний директор (COO) · Head of E-commerce</p>
-  <p class="chips"><span class="chip">Retail</span><span class="chip">E-commerce</span><span class="chip">Q-commerce</span><span class="chip">Логістика</span></p>
-  <p class="meta"><b>Дніпро</b> · <a href="tel:+380503633127">+380 50 363 31 27</a> · <a href="mailto:parshencevdenis@gmail.com">parshencevdenis@gmail.com</a></p>
-  <p class="meta"><a href="https://www.linkedin.com/in/denis-parshentsev/">linkedin.com/in/denis-parshentsev</a> · <a href="https://parshentsev-cv.vercel.app/site?lang=uk">Веб-візитка</a></p>
+  <header class="header">
+    <div class="header__text">
+      <h1>Денис Паршенцев</h1>
+      <p class="role-line">Операційний директор (COO) · Head of E-commerce</p>
+      <p class="meta"><b>Дніпро</b> · <a href="tel:+380503633127">+380 50 363 31 27</a> · <a href="mailto:parshencevdenis@gmail.com">parshencevdenis@gmail.com</a></p>
+      <p class="meta"><a href="https://www.linkedin.com/in/denis-parshentsev/">linkedin.com/in/denis-parshentsev</a> · <a href="https://parshentsev-cv.vercel.app/site?lang=uk">Веб-візитка</a></p>
+      <p class="skills-line">Операції та P&amp;L · Розвиток e-commerce · Команди та процеси · Цифрова трансформація</p>
+    </div>
+    <img class="photo" src="photo.png" alt="Денис Паршенцев">
+  </header>
 
   <h2>Профіль</h2>
-  <p>Керівник із досвідом в e-commerce та ритейлі з 2007 року: АЛЛО, VARUS, LOKO / Fozzy Group. Поєдную управління операціями та P&amp;L із розвитком цифрових продуктів, запуском каналів продажів і підвищенням ефективності бізнесу.</p>
-  <p style="margin-top:4pt">Досвід охоплює операційну структуру зі 150+ працівниками, продуктову модель e-commerce, доставку й цифрові платформи, ERP та координацію масштабування сервісу до 64 міст.</p>
+  <div class="profile">
+    <p>Керівник з досвідом розвитку e-commerce та управління операціями в АЛЛО, VARUS і LOKO / Fozzy Group. Поєдную бюджетування та управління P&amp;L із побудовою операційних моделей, розвитком цифрових продуктів і запуском каналів продажів. Керував операційною структурою зі 150+ працівниками та командами керівників напрямів. Мій досвід охоплює виконання замовлень, склади, доставку, клієнтський сервіс, продуктові команди та впровадження ERP з боку бізнесу. Сильна сторона — організація роботи між підрозділами та перетворення окремих ініціатив на керовані процеси з відповідальністю й показниками результату.</p>
+  </div>
 
-  <h2>Масштаб досвіду та результати</h2>
-  <ul>
-    <li><b>×16</b> — зростання обороту LOKO з квітня 2023 (результат бізнесу; особистий внесок — у досвіді).</li>
-    <li><b>64 міста</b> — координація підтримки географічного масштабування з командами холдингу.</li>
-    <li><b>150+</b> — операційна структура АЛЛО-online (філії, склади, видача, доставка), 2012–2016.</li>
-    <li><b>До 90%</b> — доступність цільових та пенетраційних артикулів у LOKO.</li>
-    <li><b>ERP</b> — Oracle JD Edwards з боку бізнесу: процеси, облік, перехід і звірки.</li>
-  </ul>
-
-  <h2>Цільові позиції</h2>
-  <ul>
-    <li>Операційний директор (COO)</li>
-    <li>Директор з електронної комерції (Head of E-commerce)</li>
-    <li>Директор з розвитку бізнесу (CBDO)</li>
-    <li>CEO невеликого бізнесу</li>
-  </ul>
-
-  <h2>Управлінська експертиза</h2>
-  <ul>
-    <li><b>Операції:</b> збирання замовлень, склади, видача, власна/партнерська доставка, клієнтський сервіс.</li>
-    <li><b>Фінанси:</b> бюджетування, P&amp;L, звітність, юніт-економіка, інвестиційні кейси.</li>
-    <li><b>Люди та процеси:</b> керівники напрямів, KPI, регламенти, міжфункціональна взаємодія.</li>
-    <li><b>Цифрова трансформація:</b> платформи й застосунки, продуктові команди, ROPO, Oracle JD Edwards.</li>
-    <li><b>Розвиток бізнесу:</b> агрегатори, партнерства, географія й асортимент, нові канали.</li>
-  </ul>
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric__value">64 міста</span>
+      <span class="metric__desc">Географія LOKO; координація масштабування з командами холдингу</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">150+ працівників</span>
+      <span class="metric__desc">Операційна структура АЛЛО-online, 2012–2016</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">4–5 керівників</span>
+      <span class="metric__desc">Команда управління у VARUS Ecommerce</span>
+    </div>
+  </div>
 
   <h2>Досвід</h2>
 
-  <div class="job">
-  <p class="company">LOKO (Fozzy Group)<span class="dates"> | Квітень 2023 — дотепер</span></p>
-  <p class="role">Заступник керівника LOKO з питань стратегічних проєктів та партнерств</p>
-  <p class="intro">Ініціативи зростання й ефективності продуктового напряму; управління напрямом агрегаторів, включно з бюджетуванням і продажами. Пряма команда менеджерів і координація підрозділів холдингу.</p>
-  <p class="label">Результати:</p>
-  <ul>
-    <li>Запуск і розвиток каналу Glovo / Bolt Food: модель, домовленості, процеси, KPI напряму.</li>
-    <li>Координація з операціями й маркетингом холдингу під час розширення до 64 міст.</li>
-    <li>Розширення асортименту з торгових залів офлайн-філій; доступність цільових і пенетраційних артикулів до 90%.</li>
-    <li>Ініціативи економіки: пороги доставки, динамічні тарифи, пакування, сервісні збори, двоетапна оплата (ефект на EBITDA — NDA).</li>
-    <li>Бізнесові та юридичні схеми для нових напрямів, зокрема ліків, разом із юридичною службою та партнерами.</li>
-  </ul>
-  </div>
+  <section class="job job--keep">
+    <p class="company">LOKO / Fozzy Group</p>
+    <span class="dates">квітень 2023 — дотепер</span>
+    <p class="role">Заступник керівника LOKO з питань стратегічних проєктів та партнерств</p>
+    <p class="intro">Відповідаю за ініціативи зростання й підвищення ефективності продуктового напряму LOKO. Керую напрямом агрегаторів, включно з бюджетуванням і продажами, та командою менеджерів. Організовую взаємодію з операційною командою, маркетингом, юридичною службою та іншими напрямами холдингу.</p>
+    <ul>
+      <li><b>Новий канал продажів.</b> Запустив і розвиваю напрям агрегаторів: бізнес-модель, партнерські домовленості, операційні процеси та показники результативності.</li>
+      <li><b>Географічне масштабування.</b> Координував взаємодію LOKO з операційною командою та маркетингом холдингу під час розширення сервісу до 64 міст.</li>
+      <li><b>Асортимент і доступність.</b> Реалізував розширення пропозиції за рахунок асортименту торгових залів офлайн-філій. Асортимент збільшено в кілька разів, доступність цільових та пенетраційних артикулів — до 90%.</li>
+      <li><b>Операційна ефективність.</b> Впровадив ініціативи щодо порогів доставки, динамічних тарифів, пакування, сервісних зборів і двоетапної оплати з вимірюваним позитивним впливом на EBITDA.</li>
+      <li><b>Нові напрями продажів.</b> Розробляв і впроваджував бізнес-моделі та юридичні механізми для регульованих категорій, зокрема лікарських засобів, у взаємодії з юридичною службою та партнерами.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">VARUS Ecommerce<span class="dates"> | 2020 — 2023</span></p>
-  <p class="role">Заступник директора з електронної комерції / операційний директор (COO)</p>
-  <p class="intro">Операційна модель e-commerce; 4–5 керівників напрямів; P&amp;L дирекції. IT/маркетинг — на окремих етапах; комерція поділена з холдингом. Готував і захищав інвестиційні рішення перед комітетами холдингу.</p>
-  <p class="label">Результати:</p>
-  <ul>
-    <li>Бізнесова й фінансова моделі розвитку після аудиту; побудова операційних процесів.</li>
-    <li>Тендери та захист рішень на рівні холдингу; бюджетування поточних витрат у межах повноважень.</li>
-    <li>Запуск нової e-commerce платформи та власної доставки з профільними командами й підрядниками.</li>
-    <li>Процес збирання замовлень і протоколи взаємодії з операційною командою мережі.</li>
-    <li>Підготував інвестиційний кейс великого даркстору (модель, інфраструктура, розрахунки).</li>
-  </ul>
-  </div>
+  <section class="job job--page job--keep">
+    <p class="company">VARUS Ecommerce</p>
+    <span class="dates">2020–2023</span>
+    <p class="role">Заступник директора з електронної комерції / операційний директор</p>
+    <p class="intro">Відповідав за побудову та розвиток операційної моделі e-commerce, бюджетування, управління P&amp;L і фінансову звітність напряму. У підпорядкуванні — 4–5 керівників напрямів. Керував збиранням замовлень, доставкою та клієнтським сервісом; на окремих етапах — також IT і маркетингом.</p>
+    <ul>
+      <li><b>Бізнесова та фінансова моделі.</b> Проаналізував стан e-commerce на початковому етапі розвитку й розробив моделі його подальшої роботи та масштабування.</li>
+      <li><b>Платформа й доставка.</b> Разом із профільними командами та підрядниками запустив нову e-commerce платформу та власну доставку, побудувавши відповідні операційні процеси.</li>
+      <li><b>Взаємодія з торговельною мережею.</b> Організував процес збирання замовлень і розробив протоколи взаємодії e-commerce з операційною командою мережі.</li>
+      <li><b>Фінанси та інвестиційні рішення.</b> Вів бюджетування і підготовку фінансової звітності, готував тендери та захищав бізнесові й IT-рішення перед комітетами холдингу.</li>
+      <li><b>Планування інфраструктури.</b> Підготував інвестиційний кейс великого даркстору: операційну модель, вимоги до інфраструктури та фінансові розрахунки.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">Група компаній АЛЛО<span class="dates"> | 2007 — 2020</span></p>
-  <p class="role">Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online<span class="dates"> | 2016 — 2020</span></p>
-  <p class="intro">Розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Управління продуктовою командою, проєктними менеджерами, дизайнерами, QA та зовнішніми командами.</p>
-  <ul>
-    <li>Розвиток сайту й застосунку; продуктова підтримка KPI онлайн-каналу.</li>
-    <li>Початковий етап платформи маркетплейсу: вимоги, пріоритети, координація команд.</li>
-    <li>ROPO-аналітика: зв’язок онлайн-взаємодій із покупками в мережі.</li>
-  </ul>
-  <p class="role">Керівник відділу продажів АЛЛО-online<span class="dates"> | 2012 — 2016</span></p>
-  <p class="intro">Операційна структура 150+ працівників; директори філій і сервісні керівники в прямому підпорядкуванні.</p>
-  <ul>
-    <li>Мережа філій і виконання замовлень: обробка, видача, власна доставка, перевізники, післяпродажне обслуговування.</li>
-    <li>Склади, облік, переобліки; ТЗ для IT, регламенти, KPI та мотивація.</li>
-  </ul>
-  <p class="role">Директор Дніпропетровської філії інтернет-магазину<span class="dates"> | 2007 — 2012</span></p>
-  <ul>
-    <li>Філія з нуля: персонал, процеси, витрати; далі — підвищення на національний рівень.</li>
-  </ul>
-  <p class="role">Окремий проєкт — впровадження Oracle JD Edwards (у межах АЛЛО)</p>
-  <p class="intro">Участь у впровадженні Oracle JD Edwards з боку бізнесу.</p>
-  <ul>
-    <li>Вимоги, ТЗ, логіка операцій, сервісу й обліку; паралельні системи, звірки, запуск на філіях, взаємодія з КРУ.</li>
-  </ul>
-  </div>
+  <section class="job job--keep">
+    <p class="company">АЛЛО</p>
+    <span class="dates">2016–2020</span>
+    <p class="role">Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online</p>
+    <p class="intro">Відповідав за розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Керував продуктовою командою, проєктними менеджерами, дизайнерами й QA; координував роботу зовнішніх команд розробки.</p>
+    <ul>
+      <li><b>Сайт і мобільний застосунок.</b> Організовував розвиток продуктів і виконання продуктових завдань, що підтримували бізнес-показники онлайн-каналу.</li>
+      <li><b>Платформа маркетплейсу.</b> Керував продуктовою роботою на початковому етапі розвитку платформи: вимоги, пріоритети та взаємодія команд.</li>
+      <li><b>ROPO-аналітика.</b> Впровадив аналітику зв’язку між онлайн-взаємодіями та покупками у фізичних магазинах.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">Ранній досвід<span class="dates"> | 2005 — 2007</span></p>
-  <ul>
-    <li>ФОП (2006–2007): GPS-моніторинг транспорту. Плей Мобайл Технолоджі (2005–2007): B2B мобільний зв’язок.</li>
-  </ul>
-  </div>
+  <section class="job job--page">
+    <p class="company">АЛЛО-online</p>
+    <span class="dates">2012–2016</span>
+    <p class="role">Керівник відділу продажів</p>
+    <p class="intro">Керував операційною структурою зі 150+ працівниками, включно з філіями, складами, точками видачі та кур’єрами. У прямому підпорядкуванні — директори філій і керівники сервісних підрозділів.</p>
+    <ul>
+      <li><b>Повний цикл виконання замовлення.</b> Організовував обробку, видачу, власну доставку та роботу з перевізниками, клієнтську підтримку й післяпродажне обслуговування.</li>
+      <li><b>Складські операції.</b> Відповідав за роботу власних складів, облік і переобліки, взаємодію з логістикою та приймання товарів від клієнтів.</li>
+      <li><b>Розвиток мережі.</b> Будував процеси роботи філій; організовував перевірку нових рішень у підпорядкованих підрозділах перед масштабуванням.</li>
+      <li><b>Автоматизація та управління результативністю.</b> Формував ТЗ для IT, впроваджував регламенти, KPI та системи мотивації; планував діяльність і витрати підрозділів.</li>
+    </ul>
 
-  <h2>Освіта та розвиток</h2>
-  <ul>
-    <li><b>Незавершена вища освіта:</b> фізика; економіка підприємств.</li>
-    <li><b>U Open University:</b> управління проєктами (Lic. UOU2018032503).</li>
-    <li><b>Управлінські програми:</b> лідерство, корпоративна культура, бізнес-комунікації (А. Станченко, В. Давтян та ін.).</li>
-    <li><b>Англійська:</b> B2 / Upper-Intermediate.</li>
-  </ul>
+    <div class="role-block">
+      <p class="company" style="font-size:13.5pt">АЛЛО</p>
+      <span class="dates">2007–2012</span>
+      <p class="role">Директор Дніпропетровської філії інтернет-магазину</p>
+      <p class="intro">Побудував роботу філії з нуля: підбір команди, операційні процеси, планування витрат, мотивація персоналу та взаємодія зі службами компанії. Надалі перейшов до управління операціями АЛЛО-online на національному рівні.</p>
+    </div>
+
+    <div class="project">
+      <p class="role">Окремий проєкт у межах АЛЛО: Oracle JD Edwards</p>
+      <p class="intro">Брав участь у впровадженні ERP з боку бізнесу, пов’язуючи вимоги онлайн-продажів і сервісу з процесами фінансового обліку.</p>
+      <ul>
+        <li>Формував бізнес-вимоги та технічні завдання, опрацьовував логіку операцій, сервісу, обліку й звірок.</li>
+        <li>Брав участь у переході між системами: паралельне ведення операцій, узгодження даних та усунення розбіжностей.</li>
+        <li>Супроводжував запуск на філіях, зведення й звірку даних у тісній взаємодії з контрольно-ревізійним управлінням.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="compact">
+    <h2>Ранній досвід</h2>
+    <ul>
+      <li>Приватний підприємець (2006–2007): продаж і впровадження GPS-моніторингу автотранспорту.</li>
+      <li>ТОВ «Плей Мобайл Технолоджі» (2005–2007): корпоративні продажі мобільного зв’язку та залучення B2B-клієнтів.</li>
+    </ul>
+
+    <h2>Освіта та розвиток</h2>
+    <ul>
+      <li><b>Незавершена вища освіта:</b> фізика; економіка підприємств.</li>
+      <li><b>U Open University:</b> управління проєктами (Lic. UOU2018032503).</li>
+      <li><b>Управлінські програми:</b> лідерство, корпоративна культура, бізнес-комунікації (А. Станченко, В. Давтян та ін.).</li>
+      <li><b>Англійська:</b> B2 / Upper-Intermediate.</li>
+    </ul>
+  </section>
 </body>
 </html>
 """
@@ -203,113 +274,124 @@ HTML_EN = f"""<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><title>Denis Parshentsev — CV</title><style>{CSS}</style></head>
 <body>
-  <img class="photo" src="photo.png" alt="Denis Parshentsev">
-  <h1>Denis Parshentsev</h1>
-  <p class="role-line">Chief Operating Officer (COO) · Head of E-commerce</p>
-  <p class="chips"><span class="chip">Retail</span><span class="chip">E-commerce</span><span class="chip">Q-commerce</span><span class="chip">Logistics</span></p>
-  <p class="meta"><b>Dnipro</b> · <a href="tel:+380503633127">+380 50 363 31 27</a> · <a href="mailto:parshencevdenis@gmail.com">parshencevdenis@gmail.com</a></p>
-  <p class="meta"><a href="https://www.linkedin.com/in/denis-parshentsev/">linkedin.com/in/denis-parshentsev</a> · <a href="https://parshentsev-cv.vercel.app/site?lang=en">Web CV</a></p>
+  <header class="header">
+    <div class="header__text">
+      <h1>Denis Parshentsev</h1>
+      <p class="role-line">Chief Operating Officer (COO) · Head of E-commerce</p>
+      <p class="meta"><b>Dnipro</b> · <a href="tel:+380503633127">+380 50 363 31 27</a> · <a href="mailto:parshencevdenis@gmail.com">parshencevdenis@gmail.com</a></p>
+      <p class="meta"><a href="https://www.linkedin.com/in/denis-parshentsev/">linkedin.com/in/denis-parshentsev</a> · <a href="https://parshentsev-cv.vercel.app/site?lang=en">Web CV</a></p>
+      <p class="skills-line">Operations &amp; P&amp;L · E-commerce growth · Teams &amp; processes · Digital transformation</p>
+    </div>
+    <img class="photo" src="photo.png" alt="Denis Parshentsev">
+  </header>
 
   <h2>Profile</h2>
-  <p>Operator and product leader in e-commerce and retail since 2007: ALLO, VARUS, LOKO / Fozzy Group. I combine operations and P&amp;L ownership with digital product development, channel launches and business efficiency.</p>
-  <p style="margin-top:4pt">Experience covers an operating structure of 150+ people, product-led e-commerce, delivery and platforms, ERP from the business side, and coordinated scaling to 64 cities.</p>
+  <div class="profile">
+    <p>Operations and digital product leader with experience building e-commerce and running operations at ALLO, VARUS and LOKO / Fozzy Group. I combine budgeting and P&amp;L management with operating-model design, digital product development and sales-channel launches. I have led an operating structure of 150+ people and teams of function leads. My experience covers order fulfillment, warehouses, delivery, customer service, product teams and business-side ERP rollout. Strength: organizing cross-functional work and turning discrete initiatives into managed processes with clear ownership and performance metrics.</p>
+  </div>
 
-  <h2>Scale of experience and results</h2>
-  <ul>
-    <li><b>×16</b> — LOKO turnover growth from April 2023 (business outcome; personal contribution in Experience).</li>
-    <li><b>64 cities</b> — coordinated geographic scale-up with holding operations and marketing.</li>
-    <li><b>150+</b> — ALLO-online operating structure (branches, warehouses, pickup, delivery), 2012–2016.</li>
-    <li><b>Up to 90%</b> — availability of target and penetration SKUs in LOKO.</li>
-    <li><b>ERP</b> — Oracle JD Edwards business-side rollout: processes, accounting, cutover, reconciliations.</li>
-  </ul>
-
-  <h2>Target positions</h2>
-  <ul>
-    <li>Chief Operating Officer (COO)</li>
-    <li>Head of E-commerce / E-commerce Director</li>
-    <li>Chief Business Development Officer (CBDO)</li>
-    <li>CEO of a small business</li>
-  </ul>
-
-  <h2>Management expertise</h2>
-  <ul>
-    <li><b>Operations:</b> picking, warehouses, pickup, owned/partner delivery, customer service.</li>
-    <li><b>Finance:</b> budgeting, P&amp;L, reporting, unit economics, investment cases.</li>
-    <li><b>People &amp; process:</b> function leads, KPI, playbooks, cross-functional orchestration.</li>
-    <li><b>Digital:</b> platforms and apps, product teams, ROPO, Oracle JD Edwards.</li>
-    <li><b>Business development:</b> aggregators, partnerships, geography and assortment, new channels.</li>
-  </ul>
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric__value">64 cities</span>
+      <span class="metric__desc">LOKO geography; coordinated scale-up with holding teams</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">150+ people</span>
+      <span class="metric__desc">ALLO-online operating structure, 2012–2016</span>
+    </div>
+    <div class="metric">
+      <span class="metric__value">4–5 leads</span>
+      <span class="metric__desc">Management team at VARUS Ecommerce</span>
+    </div>
+  </div>
 
   <h2>Experience</h2>
 
-  <div class="job">
-  <p class="company">LOKO (Fozzy Group)<span class="dates"> | April 2023 — present</span></p>
-  <p class="role">Deputy Head of LOKO, Strategic Projects &amp; Partnerships</p>
-  <p class="intro">Growth and efficiency initiatives for the grocery line; owned the aggregators stream including budgeting and sales. Led a team of managers and coordinated holding functions.</p>
-  <p class="label">Results:</p>
-  <ul>
-    <li>Launched Glovo / Bolt Food channel: model, terms, processes, stream KPIs.</li>
-    <li>Coordinated with holding ops and marketing during expansion to 64 cities.</li>
-    <li>Expanded the offer using in-store assortment from offline branches; up to 90% availability of target/penetration SKUs.</li>
-    <li>Implemented profitability improvement initiatives: delivery thresholds, dynamic tariffs, packaging, service fees, two-step payment (EBITDA effect under NDA).</li>
-    <li>Commercial and legal schemes for new streams, including medicines, with the legal team and partners.</li>
-  </ul>
-  </div>
+  <section class="job job--keep">
+    <p class="company">LOKO / Fozzy Group</p>
+    <span class="dates">April 2023 — present</span>
+    <p class="role">Deputy Head of LOKO, Strategic Projects &amp; Partnerships</p>
+    <p class="intro">I drive growth and efficiency initiatives for LOKO’s grocery line. I am responsible for aggregator partnerships, budgeting and sales, and lead a team of managers. I coordinate work with operations, marketing, legal and other holding functions.</p>
+    <ul>
+      <li><b>New sales channel.</b> Launched and continue to develop the aggregators stream: business model, partner terms, operating processes and performance metrics.</li>
+      <li><b>Geographic scale-up.</b> Coordinated LOKO with holding operations and marketing while expanding the service to 64 cities.</li>
+      <li><b>Assortment and availability.</b> Expanded the offer using assortment from physical stores. Assortment grew several times; availability of target and penetration SKUs reached up to 90%.</li>
+      <li><b>Operating efficiency.</b> Implemented delivery thresholds, dynamic tariffs, packaging, service fees and two-step payment with a measurable positive impact on EBITDA.</li>
+      <li><b>New sales streams.</b> Developed and rolled out business models and legal frameworks for regulated categories, including medicines, with the legal team and partners.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">VARUS Ecommerce<span class="dates"> | 2020 — 2023</span></p>
-  <p class="role">Deputy Director of E-commerce / Chief Operating Officer (COO)</p>
-  <p class="intro">E-commerce operating model; 4–5 function leads; directorate P&amp;L. IT/marketing at selected stages; commerce shared with the holding. Prepared and justified investment proposals before holding committees.</p>
-  <p class="label">Results:</p>
-  <ul>
-    <li>Business and financial development models after audit; operating processes.</li>
-    <li>Tenders and presented business/technology proposals at holding level; day-to-day spend within mandate.</li>
-    <li>New e-commerce platform and owned delivery with specialist teams and vendors.</li>
-    <li>Order-picking process and e-commerce ↔ store-ops protocols.</li>
-    <li>Prepared a large dark-store investment case (ops model, infrastructure, finance).</li>
-  </ul>
-  </div>
+  <section class="job job--page job--keep">
+    <p class="company">VARUS Ecommerce</p>
+    <span class="dates">2020–2023</span>
+    <p class="role">Deputy Director of E-commerce / Chief Operating Officer</p>
+    <p class="intro">Built and developed the e-commerce operating model, budgeting, P&amp;L management and financial reporting for the unit. Led 4–5 function leads. Owned picking, delivery and customer service; at selected stages also IT and marketing.</p>
+    <ul>
+      <li><b>Business and financial models.</b> Assessed e-commerce at an early stage and designed models for operating and scaling the unit.</li>
+      <li><b>Platform and delivery.</b> With specialist teams and vendors, launched a new e-commerce platform and in-house delivery, building the matching operating processes.</li>
+      <li><b>Store-network collaboration.</b> Set up order picking and designed e-commerce interaction protocols with the retail network’s operations team.</li>
+      <li><b>Finance and investment decisions.</b> Ran budgeting and financial reporting, managed tenders and presented business and technology investment proposals to group committees.</li>
+      <li><b>Infrastructure planning.</b> Prepared a large dark-store investment case: operating model, infrastructure requirements and financial calculations.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">ALLO Group<span class="dates"> | 2007 — 2020</span></p>
-  <p class="role">Head of Online / Head of Business Development, ALLO-online<span class="dates"> | 2016 — 2020</span></p>
-  <p class="intro">Digital platform development, product metrics and engineering budgets. Led product, PMs, design, QA and external engineering teams.</p>
-  <ul>
-    <li>Website and app development; product support for online-channel KPIs.</li>
-    <li>Early marketplace platform: requirements, priorities, team coordination.</li>
-    <li>ROPO analytics linking online interactions to in-store purchases.</li>
-  </ul>
-  <p class="role">Head of ALLO-online Sales<span class="dates"> | 2012 — 2016</span></p>
-  <p class="intro">Operating structure of 150+ people; branch directors and service leads in direct line.</p>
-  <ul>
-    <li>Branch network and fulfillment: processing, pickup, owned delivery, carriers, after-sales service.</li>
-    <li>Warehouses and stock control; IT specs, playbooks, KPI and incentives.</li>
-  </ul>
-  <p class="role">Director, Dnipro internet-store branch<span class="dates"> | 2007 — 2012</span></p>
-  <ul>
-    <li>Built the branch from scratch; later promoted to national ALLO-online leadership.</li>
-  </ul>
-  <p class="role">Separate project — Oracle JD Edwards (within ALLO)</p>
-  <p class="intro">Business-side participation in the Oracle JD Edwards rollout.</p>
-  <ul>
-    <li>Requirements, specs, ops/service/accounting logic; parallel systems, reconciliations, branch go-live, work with internal audit.</li>
-  </ul>
-  </div>
+  <section class="job job--keep">
+    <p class="company">ALLO</p>
+    <span class="dates">2016–2020</span>
+    <p class="role">Head of Online / Head of Business Development, ALLO-online</p>
+    <p class="intro">Owned digital platform development, product metrics and team/engineering budgets. Led the product team, project managers, designers and QA; coordinated external engineering teams.</p>
+    <ul>
+      <li><b>Website and mobile app.</b> Organized product development and product work that supported online-channel business KPIs.</li>
+      <li><b>Marketplace platform.</b> Led product work at the early stage of the marketplace platform: requirements, priorities and team collaboration.</li>
+      <li><b>ROPO analytics.</b> Introduced analytics linking online interactions to purchases in physical stores.</li>
+    </ul>
+  </section>
 
-  <div class="job">
-  <p class="company">Earlier career<span class="dates"> | 2005 — 2007</span></p>
-  <ul>
-    <li>Private entrepreneur (2006–2007): GPS fleet monitoring. Play Mobile Technology (2005–2007): B2B mobile telecom.</li>
-  </ul>
-  </div>
+  <section class="job job--page">
+    <p class="company">ALLO-online</p>
+    <span class="dates">2012–2016</span>
+    <p class="role">Head of Sales</p>
+    <p class="intro">Led an operating structure of 150+ people across branches, warehouses, pickup points and couriers. Branch directors and service leads reported directly.</p>
+    <ul>
+      <li><b>End-to-end order fulfillment.</b> Organized processing, pickup, in-house delivery and carrier work, customer support and after-sales service.</li>
+      <li><b>Warehouse operations.</b> Owned in-house warehouses, stock control and recounts, logistics interfaces and customer returns.</li>
+      <li><b>Network development.</b> Built branch operating processes and piloted new solutions in reporting units before scaling.</li>
+      <li><b>Automation and performance management.</b> Wrote IT specs, introduced playbooks, KPIs and incentive systems; planned unit activity and spend.</li>
+    </ul>
 
-  <h2>Education &amp; development</h2>
-  <ul>
-    <li><b>Incomplete higher education:</b> Physics; Enterprise Economics.</li>
-    <li><b>U Open University:</b> project management (Lic. UOU2018032503).</li>
-    <li><b>Executive programs:</b> leadership, corporate culture, business communications (A. Stanchenko, V. Davtyan, et al.).</li>
-    <li><b>English:</b> B2 / Upper-Intermediate.</li>
-  </ul>
+    <div class="role-block">
+      <p class="company" style="font-size:13.5pt">ALLO</p>
+      <span class="dates">2007–2012</span>
+      <p class="role">Director, Dnipro internet-store branch</p>
+      <p class="intro">Built the branch from scratch: team hiring, operating processes, cost planning, staff incentives and interfaces with company services. Later moved into national ALLO-online operations leadership.</p>
+    </div>
+
+    <div class="project">
+      <p class="role">Separate project within ALLO: Oracle JD Edwards</p>
+      <p class="intro">Participated in the ERP rollout from the business side, connecting online sales and service requirements with financial accounting processes.</p>
+      <ul>
+        <li>Defined business requirements and technical specs; worked through ops, service, accounting and reconciliation logic.</li>
+        <li>Took part in system cutover: parallel operations, data alignment and resolving discrepancies.</li>
+        <li>Supported branch go-live and data consolidation in close collaboration with internal audit / internal control.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="compact">
+    <h2>Earlier career</h2>
+    <ul>
+      <li>Private entrepreneur (2006–2007): sales and rollout of GPS fleet monitoring.</li>
+      <li>Play Mobile Technology LLC (2005–2007): B2B mobile telecom sales and corporate acquisition.</li>
+    </ul>
+
+    <h2>Education &amp; development</h2>
+    <ul>
+      <li><b>Incomplete higher education:</b> Physics; Enterprise Economics.</li>
+      <li><b>U Open University:</b> project management (Lic. UOU2018032503).</li>
+      <li><b>Executive programs:</b> leadership, corporate culture, business communications (A. Stanchenko, V. Davtyan, et al.).</li>
+      <li><b>English:</b> B2 / Upper-Intermediate.</li>
+    </ul>
+  </section>
 </body>
 </html>
 """
@@ -329,7 +411,7 @@ def prepare_build() -> None:
     (BUILD / "cv-en.html").write_text(HTML_EN, encoding="utf-8")
 
 
-def print_pdf(html_path: Path, pdf_path: Path) -> None:
+def print_pdf(html_path: Path, pdf_path: Path, footer_name: str) -> None:
     with sync_playwright() as p:
         browser = None
         last_error = None
@@ -349,7 +431,16 @@ def print_pdf(html_path: Path, pdf_path: Path) -> None:
             path=str(pdf_path),
             format="A4",
             print_background=True,
-            margin={"top": "10mm", "bottom": "10mm", "left": "12mm", "right": "12mm"},
+            display_header_footer=True,
+            header_template="<span></span>",
+            footer_template=(
+                f'<div style="font-size:8.5pt;width:100%;padding:0 16mm;color:#64748b;'
+                f'font-family:Arial,sans-serif;display:flex;justify-content:space-between;">'
+                f"<span>{footer_name}</span>"
+                f'<span><span class="pageNumber"></span> / <span class="totalPages"></span></span>'
+                f"</div>"
+            ),
+            margin={"top": "16mm", "bottom": "18mm", "left": "17mm", "right": "17mm"},
         )
         browser.close()
 
@@ -370,8 +461,8 @@ def copy_with_retry(src: Path, dst: Path) -> None:
 
 def main() -> int:
     prepare_build()
-    print_pdf(BUILD / "cv-uk.html", BUILD / "cv.pdf")
-    print_pdf(BUILD / "cv-en.html", BUILD / "cv-en.pdf")
+    print_pdf(BUILD / "cv-uk.html", BUILD / "cv.pdf", "Денис Паршенцев")
+    print_pdf(BUILD / "cv-en.html", BUILD / "cv-en.pdf", "Denis Parshentsev")
     copy_with_retry(BUILD / "cv.pdf", OUT_UK)
     copy_with_retry(BUILD / "cv-en.pdf", OUT_EN)
     time.sleep(0.3)
