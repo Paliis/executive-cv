@@ -3,3 +3,8 @@ Thumbs.db
 *.docx
 .vercel
 _cv-build/
+photo-original.png
+_*.png
+_*.py
+_*.txt
+
