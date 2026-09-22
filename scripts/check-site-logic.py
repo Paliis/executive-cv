@@ -43,7 +43,7 @@ def main() -> int:
 
         loko = page.locator(".exp-card").filter(has_text="LOKO").first
         assert "Заступник" in loko.inner_text()
-        assert "CBDM" in loko.inner_text()
+        assert "CBDM" not in loko.inner_text()
 
         opacity = page.locator(".hero__name").evaluate("el => getComputedStyle(el).opacity")
         assert float(opacity) > 0.9, opacity

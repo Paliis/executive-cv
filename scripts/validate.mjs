@@ -184,8 +184,25 @@ if (!earlyUk || !earlyEn) fail("Early career entry missing");
 if (earlyUk.role || earlyEn.role) fail("Early career should not have a role field");
 
 const lokoUk = content.experience.uk.find((j) => j.company.includes("LOKO"));
-if (!lokoUk?.role?.includes("Заступник") || !lokoUk?.role?.includes("CBDM")) {
-  fail("LOKO role must keep Заступник title with CBDM clarification");
+if (!lokoUk?.role?.includes("Заступник") || /CBDM/i.test(lokoUk.role)) {
+  fail("LOKO role must keep Заступник title without mismatched CBDM label");
+}
+const bannedPhrases = [
+  "не свідчення",
+  "не побудований",
+  "не розробник",
+  "не одноосібний",
+  "не були основною зоною",
+  "not the primary mandate",
+  "not a built facility",
+  "not a developer",
+  "Overall LOKO P&L",
+  "Загальний P&L LOKO",
+  "кандидат готував",
+];
+const blob = JSON.stringify(content.experience);
+for (const phrase of bannedPhrases) {
+  if (blob.includes(phrase)) fail(`Internal accuracy note leaked into CV: ${phrase}`);
 }
 const alloSales = content.experience.uk.find((j) => j.period.includes("2012"));
 if (!alloSales?.intro?.includes("150+")) fail("150+ headcount must sit on ALLO sales 2012–2016");

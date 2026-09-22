@@ -40,30 +40,31 @@ html, body {
 }
 .photo {
   float: right;
-  width: 150pt;
-  height: 200pt;
+  width: 112pt;
+  height: 140pt;
   object-fit: cover;
   object-position: 50% 18%;
-  margin: 0 0 10pt 12pt;
+  margin: 0 0 8pt 10pt;
 }
-h1 { font-size: 22pt; font-weight: 700; line-height: 1.1; margin: 0 0 4pt; }
-.role-line { font-size: 12pt; font-weight: 700; margin: 0 0 6pt; }
-.meta { font-size: 10.5pt; line-height: 1.35; margin-bottom: 2pt; }
+h1 { font-size: 20pt; font-weight: 700; line-height: 1.1; margin: 0 0 3pt; }
+.role-line { font-size: 11.5pt; font-weight: 700; margin: 0 0 5pt; }
+.meta { font-size: 10pt; line-height: 1.35; margin-bottom: 1.5pt; }
 a { color: #1155CC; text-decoration: underline; }
 h2 {
-  font-size: 12pt;
+  font-size: 11.5pt;
   font-weight: 700;
-  margin: 12pt 0 5pt;
+  margin: 9pt 0 4pt;
   clear: both;
   border-bottom: 0.6pt solid #222;
   padding-bottom: 2pt;
 }
-ul { margin: 0 0 4pt 16pt; padding: 0; }
-li { margin: 0 0 2.5pt; }
+ul { margin: 0 0 3pt 16pt; padding: 0; }
+li { margin: 0 0 2pt; }
+.job { page-break-inside: avoid; break-inside: avoid; }
 .company {
   font-weight: 700;
   font-style: italic;
-  margin: 10pt 0 3pt;
+  margin: 8pt 0 2pt;
   padding-left: 16pt;
   position: relative;
 }
@@ -75,12 +76,12 @@ li { margin: 0 0 2.5pt; }
   font-weight: 400;
 }
 .context { font-style: italic; margin: 0 0 3pt 16pt; }
-.role { font-weight: 700; margin: 2pt 0 3pt 16pt; }
-.intro { margin: 0 0 3pt 16pt; }
-.label { font-weight: 700; margin: 4pt 0 2pt 16pt; }
+.role { font-weight: 700; margin: 2pt 0 2pt 16pt; }
+.intro { margin: 0 0 2pt 16pt; }
+.label { font-weight: 700; margin: 3pt 0 2pt 16pt; }
 .dates { white-space: nowrap; }
-.chips { margin: 0 0 6pt; }
-.chip { display: inline-block; margin: 0 4pt 3pt 0; padding: 1pt 6pt; border: 0.5pt solid #888; border-radius: 3pt; font-size: 9pt; }
+.chips { margin: 0 0 5pt; }
+.chip { display: inline-block; margin: 0 4pt 2pt 0; padding: 1pt 6pt; border: 0.5pt solid #888; border-radius: 3pt; font-size: 9pt; }
 """
 
 HTML_UK = f"""<!DOCTYPE html>
@@ -119,40 +120,45 @@ HTML_UK = f"""<!DOCTYPE html>
   <ul>
     <li><b>Операції:</b> збирання замовлень, склади, видача, власна/партнерська доставка, клієнтський сервіс.</li>
     <li><b>Фінанси:</b> бюджетування, P&amp;L, звітність, юніт-економіка, інвестиційні кейси.</li>
-    <li><b>Люди та процеси:</b> керівники напрямів, KPI, регламенти, кросфункція.</li>
+    <li><b>Люди та процеси:</b> керівники напрямів, KPI, регламенти, міжфункціональна взаємодія.</li>
     <li><b>Цифрова трансформація:</b> платформи й застосунки, продуктові команди, ROPO, Oracle JD Edwards.</li>
-    <li><b>Розвиток бізнесу:</b> агрегати, партнерства, географія й асортимент, нові канали.</li>
+    <li><b>Розвиток бізнесу:</b> агрегатори, партнерства, географія й асортимент, нові канали.</li>
   </ul>
 
   <h2>Досвід</h2>
 
+  <div class="job">
   <p class="company">LOKO (Fozzy Group)<span class="dates"> | Квітень 2023 — дотепер</span></p>
-  <p class="role">Заступник керівника LOKO з питань стратегічних проєктів та партнерств (CBDM — Senior Business Development Manager)</p>
-  <p class="intro">Ініціативи зростання й ефективності продуктового напряму; напрям агрегаторів (бюджетування й продажі). Загальний P&amp;L LOKO затверджує керівник бізнесу.</p>
+  <p class="role">Заступник керівника LOKO з питань стратегічних проєктів та партнерств</p>
+  <p class="intro">Ініціативи зростання й ефективності продуктового напряму; управління напрямом агрегаторів, включно з бюджетуванням і продажами. Пряма команда менеджерів і координація підрозділів холдингу.</p>
   <p class="label">Результати:</p>
   <ul>
     <li>Запуск і розвиток каналу Glovo / Bolt Food: модель, домовленості, процеси, KPI напряму.</li>
     <li>Координація з операціями й маркетингом холдингу під час розширення до 64 міст.</li>
-    <li>Розширення асортименту з офлайн-залів; доступність цільових/пенетраційних артикулів до 90%.</li>
+    <li>Розширення асортименту з торгових залів офлайн-філій; доступність цільових і пенетраційних артикулів до 90%.</li>
     <li>Ініціативи економіки: пороги доставки, динамічні тарифи, пакування, сервісні збори, двоетапна оплата (ефект на EBITDA — NDA).</li>
-    <li>Бізнесові та юридичні схеми для нових напрямів, зокрема ліків, разом із legal і партнерами.</li>
+    <li>Бізнесові та юридичні схеми для нових напрямів, зокрема ліків, разом із юридичною службою та партнерами.</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">VARUS Ecommerce<span class="dates"> | 2020 — 2023</span></p>
   <p class="role">Заступник директора з електронної комерції / операційний директор (COO)</p>
-  <p class="intro">Операційна модель e-commerce; 4–5 керівників напрямів; P&amp;L дирекції. IT/маркетинг — на окремих етапах; комерція поділена з холдингом.</p>
+  <p class="intro">Операційна модель e-commerce; 4–5 керівників напрямів; P&amp;L дирекції. IT/маркетинг — на окремих етапах; комерція поділена з холдингом. Готував і захищав інвестиційні рішення перед комітетами холдингу.</p>
   <p class="label">Результати:</p>
   <ul>
     <li>Бізнесова й фінансова моделі розвитку після аудиту; побудова операційних процесів.</li>
     <li>Тендери та захист рішень на рівні холдингу; бюджетування поточних витрат у межах повноважень.</li>
     <li>Запуск нової e-commerce платформи та власної доставки з профільними командами й підрядниками.</li>
     <li>Процес збирання замовлень і протоколи взаємодії з операційною командою мережі.</li>
-    <li>Інвестиційний кейс великого даркстору (підготовка кейсу, не побудований об’єкт).</li>
+    <li>Підготував інвестиційний кейс великого даркстору (модель, інфраструктура, розрахунки).</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">Група компаній АЛЛО<span class="dates"> | 2007 — 2020</span></p>
   <p class="role">Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online<span class="dates"> | 2016 — 2020</span></p>
-  <p class="intro">Цифрові платформи, продуктові метрики, бюджети розробки. Комерція / seller acquisition / маркетинг — не основна зона.</p>
+  <p class="intro">Розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Управління продуктовою командою, проєктними менеджерами, дизайнерами, QA та зовнішніми командами.</p>
   <ul>
     <li>Розвиток сайту й застосунку; продуктова підтримка KPI онлайн-каналу.</li>
     <li>Початковий етап платформи маркетплейсу: вимоги, пріоритети, координація команд.</li>
@@ -161,22 +167,26 @@ HTML_UK = f"""<!DOCTYPE html>
   <p class="role">Керівник відділу продажів АЛЛО-online<span class="dates"> | 2012 — 2016</span></p>
   <p class="intro">Операційна структура 150+ працівників; директори філій і сервісні керівники в прямому підпорядкуванні.</p>
   <ul>
-    <li>Мережа філій і fulfillment: обробка, видача, власна доставка, перевізники, післяпродаж.</li>
+    <li>Мережа філій і виконання замовлень: обробка, видача, власна доставка, перевізники, післяпродажне обслуговування.</li>
     <li>Склади, облік, переобліки; ТЗ для IT, регламенти, KPI та мотивація.</li>
   </ul>
   <p class="role">Директор Дніпропетровської філії інтернет-магазину<span class="dates"> | 2007 — 2012</span></p>
   <ul>
     <li>Філія з нуля: персонал, процеси, витрати; далі — підвищення на національний рівень.</li>
   </ul>
-  <p class="role">Окремий проєкт — Oracle JD Edwards (у межах АЛЛО)</p>
+  <p class="role">Окремий проєкт — впровадження Oracle JD Edwards (у межах АЛЛО)</p>
+  <p class="intro">Участь у впровадженні Oracle JD Edwards з боку бізнесу.</p>
   <ul>
-    <li>Вимоги, ТЗ, логіка операцій/сервісу/обліку; паралельні системи, звірки, запуск на філіях, взаємодія з КРУ.</li>
+    <li>Вимоги, ТЗ, логіка операцій, сервісу й обліку; паралельні системи, звірки, запуск на філіях, взаємодія з КРУ.</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">Ранній досвід<span class="dates"> | 2005 — 2007</span></p>
   <ul>
     <li>ФОП (2006–2007): GPS-моніторинг транспорту. Плей Мобайл Технолоджі (2005–2007): B2B мобільний зв’язок.</li>
   </ul>
+  </div>
 
   <h2>Освіта та розвиток</h2>
   <ul>
@@ -232,33 +242,38 @@ HTML_EN = f"""<!DOCTYPE html>
 
   <h2>Experience</h2>
 
+  <div class="job">
   <p class="company">LOKO (Fozzy Group)<span class="dates"> | April 2023 — present</span></p>
-  <p class="role">Deputy Head of LOKO, Strategic Projects &amp; Partnerships (CBDM — Senior Business Development Manager)</p>
-  <p class="intro">Growth and efficiency initiatives for the grocery line; aggregators stream (budgeting and sales). Overall LOKO P&amp;L is approved by the business head.</p>
+  <p class="role">Deputy Head of LOKO, Strategic Projects &amp; Partnerships</p>
+  <p class="intro">Growth and efficiency initiatives for the grocery line; owned the aggregators stream including budgeting and sales. Led a team of managers and coordinated holding functions.</p>
   <p class="label">Results:</p>
   <ul>
     <li>Launched Glovo / Bolt Food channel: model, terms, processes, stream KPIs.</li>
     <li>Coordinated with holding ops and marketing during expansion to 64 cities.</li>
-    <li>Expanded assortment via offline store floors; up to 90% availability of target/penetration SKUs.</li>
-    <li>Economics levers: delivery thresholds, dynamic tariffs, packaging, service fees, two-step payment (EBITDA effect under NDA).</li>
-    <li>Commercial and legal schemes for new streams, including medicines, with legal and partners.</li>
+    <li>Expanded the offer using in-store assortment from offline branches; up to 90% availability of target/penetration SKUs.</li>
+    <li>Implemented profitability improvement initiatives: delivery thresholds, dynamic tariffs, packaging, service fees, two-step payment (EBITDA effect under NDA).</li>
+    <li>Commercial and legal schemes for new streams, including medicines, with the legal team and partners.</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">VARUS Ecommerce<span class="dates"> | 2020 — 2023</span></p>
   <p class="role">Deputy Director of E-commerce / Chief Operating Officer (COO)</p>
-  <p class="intro">E-commerce operating model; 4–5 function leads; directorate P&amp;L. IT/marketing at selected stages; commerce shared with the holding.</p>
+  <p class="intro">E-commerce operating model; 4–5 function leads; directorate P&amp;L. IT/marketing at selected stages; commerce shared with the holding. Prepared and justified investment proposals before holding committees.</p>
   <p class="label">Results:</p>
   <ul>
     <li>Business and financial development models after audit; operating processes.</li>
-    <li>Tenders and defended decisions at holding level; day-to-day spend within mandate.</li>
+    <li>Tenders and presented business/technology proposals at holding level; day-to-day spend within mandate.</li>
     <li>New e-commerce platform and owned delivery with specialist teams and vendors.</li>
     <li>Order-picking process and e-commerce ↔ store-ops protocols.</li>
-    <li>Large dark-store investment case (case preparation, not a built facility).</li>
+    <li>Prepared a large dark-store investment case (ops model, infrastructure, finance).</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">ALLO Group<span class="dates"> | 2007 — 2020</span></p>
   <p class="role">Head of Online / Head of Business Development, ALLO-online<span class="dates"> | 2016 — 2020</span></p>
-  <p class="intro">Digital platforms, product metrics, engineering budgets. Commerce / seller acquisition / marketing were not the primary mandate.</p>
+  <p class="intro">Digital platform development, product metrics and engineering budgets. Led product, PMs, design, QA and external engineering teams.</p>
   <ul>
     <li>Website and app development; product support for online-channel KPIs.</li>
     <li>Early marketplace platform: requirements, priorities, team coordination.</li>
@@ -267,7 +282,7 @@ HTML_EN = f"""<!DOCTYPE html>
   <p class="role">Head of ALLO-online Sales<span class="dates"> | 2012 — 2016</span></p>
   <p class="intro">Operating structure of 150+ people; branch directors and service leads in direct line.</p>
   <ul>
-    <li>Branch network and fulfillment: processing, pickup, owned delivery, carriers, after-sales.</li>
+    <li>Branch network and fulfillment: processing, pickup, owned delivery, carriers, after-sales service.</li>
     <li>Warehouses and stock control; IT specs, playbooks, KPI and incentives.</li>
   </ul>
   <p class="role">Director, Dnipro internet-store branch<span class="dates"> | 2007 — 2012</span></p>
@@ -275,14 +290,18 @@ HTML_EN = f"""<!DOCTYPE html>
     <li>Built the branch from scratch; later promoted to national ALLO-online leadership.</li>
   </ul>
   <p class="role">Separate project — Oracle JD Edwards (within ALLO)</p>
+  <p class="intro">Business-side participation in the Oracle JD Edwards rollout.</p>
   <ul>
     <li>Requirements, specs, ops/service/accounting logic; parallel systems, reconciliations, branch go-live, work with internal audit.</li>
   </ul>
+  </div>
 
+  <div class="job">
   <p class="company">Earlier career<span class="dates"> | 2005 — 2007</span></p>
   <ul>
     <li>Private entrepreneur (2006–2007): GPS fleet monitoring. Play Mobile Technology (2005–2007): B2B mobile telecom.</li>
   </ul>
+  </div>
 
   <h2>Education &amp; development</h2>
   <ul>
@@ -330,7 +349,7 @@ def print_pdf(html_path: Path, pdf_path: Path) -> None:
             path=str(pdf_path),
             format="A4",
             print_background=True,
-            margin={"top": "12mm", "bottom": "12mm", "left": "12mm", "right": "12mm"},
+            margin={"top": "10mm", "bottom": "10mm", "left": "12mm", "right": "12mm"},
         )
         browser.close()
 

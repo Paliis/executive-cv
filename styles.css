@@ -1153,18 +1153,14 @@ html.js-anim .reveal.is-visible {
   }
 
   .hero {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-block: calc(var(--header-h) + 0.75rem) 1.25rem;
+    padding-block: calc(var(--header-h) + 1rem) 1.75rem;
   }
 
   .hero__layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(260px, 18rem);
     column-gap: clamp(1.5rem, 2.5vw, 2.75rem);
-    row-gap: 1rem;
+    row-gap: 1.15rem;
     align-items: start;
     width: 100%;
   }
@@ -1194,7 +1190,7 @@ html.js-anim .reveal.is-visible {
     width: 100%;
     max-width: 280px;
     justify-self: end;
-    align-self: center;
+    align-self: start;
   }
 
   .hero__role {

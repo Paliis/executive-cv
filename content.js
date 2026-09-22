@@ -185,9 +185,9 @@ window.CV_CONTENT = {
         period: "Квітень 2023 — дотепер",
         company: "LOKO (Fozzy Group)",
         context: "Q-commerce екосистема у складі Fozzy Group.",
-        role: "Заступник керівника LOKO з питань стратегічних проєктів та партнерств (CBDM — Senior Business Development Manager)",
+        role: "Заступник керівника LOKO з питань стратегічних проєктів та партнерств",
         intro:
-          "Відповідальність за ініціативи додаткового зростання та ефективності продуктового напряму. Управління напрямом агрегаторів, включно з бюджетуванням і продажами. Пряма команда менеджерів та координація маркетингу, операційної команди, юридичної служби й інших підрозділів холдингу. Загальний P&L LOKO затверджує керівник бізнесу.",
+          "Відповідальність за ініціативи додаткового зростання та ефективності продуктового напряму. Управління напрямом агрегаторів, включно з бюджетуванням і продажами. Пряма команда менеджерів та координація маркетингу, операційної команди, юридичної служби й інших підрозділів холдингу.",
         results: [
           "Запустив і розвинув канал продажів через Glovo та Bolt Food: бізнес-модель, домовленості, взаємодія команд, операційні процеси та виконання показників напряму.",
           "Координував взаємодію LOKO з операційною та маркетинговою командами холдингу під час розширення географії сервісу до 64 міст.",
@@ -204,13 +204,13 @@ window.CV_CONTENT = {
           "Виділений e-commerce юніт національної мережі супермаркетів (E-Grocery).",
         role: "Заступник директора з електронної комерції / операційний директор (COO)",
         intro:
-          "Управління операційною моделлю e-commerce: збирання, доставка, клієнтський сервіс; 4–5 керівників напрямів у підпорядкуванні. Бюджетування, управління P&L та фінансова звітність дирекції. На окремих етапах — також IT і маркетинг; комерція була розподілена з холдингом. Великі інвестиції затверджували комітети; кандидат готував і захищав рішення.",
+          "Управління операційною моделлю e-commerce: збирання, доставка, клієнтський сервіс; 4–5 керівників напрямів у підпорядкуванні. Бюджетування, управління P&L та фінансова звітність дирекції. На окремих етапах — також IT і маркетинг; комерція була розподілена з холдингом. Готував і захищав інвестиційні рішення перед комітетами холдингу.",
         results: [
           "На основі аудиту розробив бізнесову й фінансову моделі розвитку напряму та організував побудову операційних процесів.",
           "Організував тендери, підготовку та захист бізнесових і технологічних рішень на рівні холдингу; керував бюджетуванням поточних витрат у межах повноважень.",
           "Забезпечив запуск нової e-commerce платформи та власної доставки у взаємодії з профільними командами й підрядниками.",
           "Побудував процес збирання замовлень і протоколи взаємодії e-commerce з операційною командою мережі.",
-          "Підготував інвестиційний кейс великого даркстору (модель, інфраструктура, розрахунки) — підготовка кейсу, не свідчення побудованого об’єкта.",
+          "Підготував інвестиційний кейс великого даркстору (модель, інфраструктура, розрахунки).",
         ],
         resultsKey: "resultsLabelShort",
       },
@@ -221,7 +221,7 @@ window.CV_CONTENT = {
           "Національний ритейлер електроніки; онлайн як окремий департамент.",
         role: "Керівник онлайн-напряму / керівник відділу розвитку бізнесу АЛЛО-online",
         intro:
-          "Відповідальність за розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Управління продуктовою командою, проєктними менеджерами, дизайнерами, QA та зовнішніми командами. Комерція, залучення продавців маркетплейсу й маркетинг не були основною зоною відповідальності.",
+          "Відповідальність за розвиток цифрових платформ, продуктові метрики та бюджети команд і розробки. Управління продуктовою командою, проєктними менеджерами, дизайнерами, QA та зовнішніми командами.",
         results: [
           "Керував розвитком сайту й мобільного застосунку та продуктовою підтримкою виконання бізнес-показників онлайн-каналу.",
           "Організував розробку платформи маркетплейсу на початковому етапі: продуктові вимоги, пріоритети та координація команд.",
@@ -260,7 +260,7 @@ window.CV_CONTENT = {
         company: "Група компаній АЛЛО",
         role: "Окремий проєкт — впровадження Oracle JD Edwards",
         intro:
-          "Участь у впровадженні ERP з боку бізнесу (не розробник і не одноосібний керівник впровадження по холдингу).",
+          "Участь у впровадженні Oracle JD Edwards з боку бізнесу.",
         results: [
           "Формування вимог, ТЗ та логіки онлайн-операцій, сервісу, фінансового обліку й звірок.",
           "Організація переходу з паралельним веденням систем, узгодженням і звірянням даних.",
@@ -282,15 +282,15 @@ window.CV_CONTENT = {
         period: "April 2023 — present",
         company: "LOKO (Fozzy Group)",
         context: "Q-commerce ecosystem within Fozzy Group.",
-        role: "Deputy Head of LOKO, Strategic Projects & Partnerships (CBDM — Senior Business Development Manager)",
+        role: "Deputy Head of LOKO, Strategic Projects & Partnerships",
         intro:
-          "Accountable for incremental growth and efficiency initiatives in the grocery line. Owned the aggregators stream including budgeting and sales. Led a managers team and coordinated marketing, operations, legal and other holding functions. Overall LOKO P&L is approved by the business head.",
+          "Accountable for incremental growth and efficiency initiatives in the grocery line. Owned the aggregators stream including budgeting and sales. Led a team of managers and coordinated marketing, operations, legal and other holding functions.",
         results: [
           "Launched and scaled Glovo and Bolt Food sales: business model, partner terms, team orchestration, operating processes and stream KPIs.",
           "Coordinated LOKO with holding operations and marketing during geographic expansion to 64 cities.",
-          "Expanded offer via offline store-floor assortment: multi-fold assortment growth and up to 90% availability of target and penetration SKUs.",
-          "Shipped economics initiatives: delivery thresholds, dynamic tariffs, paid packaging, service fees, two-step payment — with a measurable positive EBITDA effect (details under NDA).",
-          "Designed commercial and legal schemes for new sales streams, including regulated medicines, with legal and partners.",
+          "Expanded the offer using in-store assortment from offline branches: multi-fold assortment growth and up to 90% availability of target and penetration SKUs.",
+          "Implemented profitability improvement initiatives: delivery thresholds, dynamic tariffs, paid packaging, service fees, two-step payment — with a measurable positive EBITDA effect (details under NDA).",
+          "Designed commercial and legal schemes for new sales streams, including regulated medicines, together with the legal team and partners.",
         ],
         resultsKey: "resultsLabel",
       },
@@ -300,13 +300,13 @@ window.CV_CONTENT = {
         context: "Dedicated e-commerce unit of a national supermarket chain (E-Grocery).",
         role: "Deputy Director of E-commerce / Chief Operating Officer (COO)",
         intro:
-          "Owned the e-commerce operating model: picking, delivery, customer service; 4–5 function leads reporting in. Budgeting, P&L and financial reporting for the directorate. At selected stages also IT and marketing; commerce was shared with the holding. Major investments were approved by committees; I prepared and defended the cases.",
+          "Owned the e-commerce operating model: picking, delivery, customer service; 4–5 function leads reporting in. Budgeting, P&L and financial reporting for the directorate. At selected stages also IT and marketing; commerce was shared with the holding. Prepared and justified investment proposals before holding committees.",
         results: [
           "Built business and financial models after an operational audit and stood up matching processes.",
-          "Ran tenders and defended business/technology decisions at holding level; owned day-to-day spend within mandate.",
+          "Ran tenders and presented business and technology proposals at holding level; owned day-to-day spend within mandate.",
           "Delivered a new e-commerce platform and owned delivery with specialist teams and vendors.",
           "Built order-picking process and e-commerce ↔ store-ops interaction protocols.",
-          "Prepared a large dark-store investment case (ops model, infrastructure, finance) — case preparation, not a built facility.",
+          "Prepared a large dark-store investment case (ops model, infrastructure, finance).",
         ],
         resultsKey: "resultsLabelShort",
       },
@@ -316,7 +316,7 @@ window.CV_CONTENT = {
         context: "National electronics retailer; online as a dedicated department.",
         role: "Head of Online / Head of Business Development, ALLO-online",
         intro:
-          "Owned digital platform development, product metrics and team/dev budgets. Led product, PMs, design, QA and external engineering teams. Marketplace seller acquisition, commerce and marketing were not the primary mandate.",
+          "Owned digital platform development, product metrics and team/dev budgets. Led product, PMs, design, QA and external engineering teams.",
         results: [
           "Led website and mobile app development and product support for online-channel business KPIs.",
           "Drove early marketplace platform build: product requirements, priorities and team coordination.",
@@ -355,7 +355,7 @@ window.CV_CONTENT = {
         company: "ALLO Group",
         role: "Separate project — Oracle JD Edwards ERP rollout",
         intro:
-          "Business-side ERP participation (not a developer and not sole holding-wide program owner).",
+          "Business-side participation in the Oracle JD Edwards rollout.",
         results: [
           "Requirements, specs and logic for online ops, service, financial accounting and reconciliations.",
           "Cutover with parallel systems, data alignment and reconciliation.",
