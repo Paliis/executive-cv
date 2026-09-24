@@ -23,6 +23,15 @@ npm run test:smoke  # продакшен (parshentsev-cv.vercel.app)
 
 Репозиторій: https://github.com/Paliis/executive-cv — після push у `main` Vercel деплоїть автоматично.
 
+## Аналітика
+
+На `/site` підключено **Vercel Web Analytics** (перегляди сторінок). Увімкніть у кабінеті:
+
+1. [Vercel → parshentsev-cv → Analytics](https://vercel.com/paliis-projects/parshentsev-cv/analytics)
+2. **Enable** / **Web Analytics**
+
+Звіти з’являться там після перших візитів (інколи з затримкою кілька хвилин).
+
 PDF: `cv.pdf` (UA) і `cv-en.pdf` (EN) — кнопка Download на сайті дає файл мови інтерфейсу.
 
 ```bash
